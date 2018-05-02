@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Yuji_19</title>
+  <title>编译型语言，解释型语言，脚本语言 | Yuji_19</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前端，HTML，css，js">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Yuji_19">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="前言  学习js的过程遇到问题，发现自己并不清楚什么是编译型语言，解释型语言，脚本语言；随后查找阅览了一些资料，记录一下自己理解。  什么是编译型语言？需要把源程序编译成机器语言文件，以后就不需要编译，直接执行这个机器语言文件就OK了。但是在不同平台下想要实现这个程序的功能需要重新写，重新编译，因为你程序里面使用的lib或专有的系统API等各种调用接口在不同平台下可能都找不到了或不是之前预期的功">
+<meta name="keywords" content="学与问,计算机语言,随笔">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编译型语言，解释型语言，脚本语言">
+<meta property="og:url" content="http://yoursite.com/2018/05/02/scriptlanguage/index.html">
 <meta property="og:site_name" content="Yuji_19">
-<meta property="og:description" content="前端，HTML，css，js">
+<meta property="og:description" content="前言  学习js的过程遇到问题，发现自己并不清楚什么是编译型语言，解释型语言，脚本语言；随后查找阅览了一些资料，记录一下自己理解。  什么是编译型语言？需要把源程序编译成机器语言文件，以后就不需要编译，直接执行这个机器语言文件就OK了。但是在不同平台下想要实现这个程序的功能需要重新写，重新编译，因为你程序里面使用的lib或专有的系统API等各种调用接口在不同平台下可能都找不到了或不是之前预期的功">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-02T02:55:34.628Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yuji_19">
-<meta name="twitter:description" content="前端，HTML，css，js">
+<meta name="twitter:title" content="编译型语言，解释型语言，脚本语言">
+<meta name="twitter:description" content="前言  学习js的过程遇到问题，发现自己并不清楚什么是编译型语言，解释型语言，脚本语言；随后查找阅览了一些资料，记录一下自己理解。  什么是编译型语言？需要把源程序编译成机器语言文件，以后就不需要编译，直接执行这个机器语言文件就OK了。但是在不同平台下想要实现这个程序的功能需要重新写，重新编译，因为你程序里面使用的lib或专有的系统API等各种调用接口在不同平台下可能都找不到了或不是之前预期的功">
   
     <link rel="alternative" href="/atom.xml" title="Yuji_19" type="application/atom+xml">
   
@@ -166,16 +168,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-scriptlanguage" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-scriptlanguage" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/02/scriptlanguage/">编译型语言，解释型语言，脚本语言</a>
+    <h1 class="article-title" itemprop="name">
+      编译型语言，解释型语言，脚本语言
     </h1>
   
 
@@ -191,12 +191,33 @@
         <blockquote>
 <p>前言<br>  学习js的过程遇到问题，发现自己并不清楚什么是编译型语言，解释型语言，脚本语言；随后查找阅览了一些资料，记录一下自己理解。</p>
 </blockquote>
-<h2 id="什么是编译型语言？"><a href="#什么是编译型语言？" class="headerlink" title="什么是编译型语言？"></a>什么是编译型语言？</h2><p><strong>需要把源程序编译成机器语言文件，以后就不需要编译，直接执行这个机器语言文件就OK了。</strong>但是在不同平台下想要实现这个程序的功能需要重新写，重新编译，因为你程序里面使用的lib或专有的系统API等各种调用接口在不同平台下可能都找不到了或不是之前预期的功能了。所以它的跨平台性不好，但在同一平台下执行效率高，因为只需要编译一次就可以一直使用。<br>
-        
-          <a class="article-more-a" href="/2018/05/02/scriptlanguage/#more">more >></a>
-        
+<h2 id="什么是编译型语言？"><a href="#什么是编译型语言？" class="headerlink" title="什么是编译型语言？"></a>什么是编译型语言？</h2><p><strong>需要把源程序编译成机器语言文件，以后就不需要编译，直接执行这个机器语言文件就OK了。</strong>但是在不同平台下想要实现这个程序的功能需要重新写，重新编译，因为你程序里面使用的lib或专有的系统API等各种调用接口在不同平台下可能都找不到了或不是之前预期的功能了。所以它的跨平台性不好，但在同一平台下执行效率高，因为只需要编译一次就可以一直使用。<br><a id="more"></a></p>
+<h2 id="什么是解释型语言？"><a href="#什么是解释型语言？" class="headerlink" title="什么是解释型语言？"></a>什么是解释型语言？</h2><p><strong>不需要编译成机器语言文件，直接被解释器解释执行。但是每次运行都要解释执行一次。</strong>执行效率低，不过它的跨平台性比较好，在不同平台下使用专门的解释器就可以用了，并不需要重写。<br>例如：C不是解释型语言，.cpp文件编译后会生成.exe可执行文件，这就是源程序编译后的产物，而像js文件，不会编译直接执行，没有生成所谓的可执行文件，因为它本身就是可执行文件。</p>
+<h2 id="什么是脚本语言？"><a href="#什么是脚本语言？" class="headerlink" title="什么是脚本语言？"></a>什么是脚本语言？</h2><p><strong>定义某些命令(或者说字段)来代表执行实现了某些功能的程序，然后用一些语法来描述命令执行逻辑关系。</strong>当执行脚本的时候，解释器会通过识别这些命令来告诉计算机要执行哪个程序。我们说不需要编译是因为本来执行的就是已经编译好的程序（已经转换成机器语言文件了），而这里的程序在不同平台下并不相同（因为程序中的api等在不同平台下并不相同）只是它们代表的是同一种功能。<br><strong>举个栗子：</strong>脚本语言中定义a命令代表执行A程序，我写了一个脚本，内容就是a这个命令，在window下和在linux下这个脚本都是这么写，至于window下怎么实现A程序的，linux下又是怎么实现A程序的，我不知道，也不关心。我只需要把脚本交给不同平台下对应的解释器进行解释就OK了。还不明白？ <strong>再举个栗子：</strong>现在要用黄金到两个国家去买iPhone 8，你在中国是怎么操作的呢？你拿黄金到银行换iPhone8(我们假设银行可以换)，银行就给你iPhone8，实际上银行是用人民币买来iPhone8的，但是你不需要关心这些啊，因为你已经换到iPhone8了。而在美国呢？同样的你拿黄金到银行换iPhone8，银行也给你iPhone8了，实际上银行是用美元去买iPhone8，但是你依旧不需要关心这些啊，因为你也能换到iPhone8。多方便啊，这就体现了脚本语言强大的跨平台性，因为脚本语言根本不需要不关心在不同平台下实现这种功能的程序是怎么实现的，我们只需要给出规定好的代表执行实现了这种功能的程序的命令就OK啦，解释器会识别我们给出的命令告诉计算机要执行哪个程序。</p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -224,16 +245,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/02/scriptlanguage/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/05/02/scriptlanguage/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2018/04/27/firstblog/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">FirstBlog--Hexo+GitHub搭建个人博客</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -253,86 +333,35 @@
 
 
 
+  
+  
+  
+  <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNjA5My8xMjYyOA==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+  
+  
+  
 
   
-    <article id="post-firstblog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/27/firstblog/">FirstBlog--Hexo+GitHub搭建个人博客</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/27/firstblog/" class="archive-article-date">
-  	<time datetime="2018-04-27T02:33:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
-<p>  记得刚进大学不久，好多老师都建议我们尝试自己去搭建一个博客，有着个想法，后来听别人说挺难的，就不了了之。25号那天晚上，想着反正也要学前端，不如就搭建个blog吧！<br>历经一天半，基本已经搭建好了，当然了，只是最简单的而已，还有很多功能没有添加，先记录以下搭建过程吧！<br>博主是在Windows下搭建的，所以下面说的是Windows下的搭建。。。</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2018/04/27/firstblog/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">学与问</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/27/firstblog/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
 
   
+
   
 
 
@@ -355,8 +384,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
