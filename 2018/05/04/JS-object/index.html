@@ -6,18 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Yuji_19</title>
+  <title>头脑风暴-JavaScript中的对象原型 | Yuji_19</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前端，HTML，css，js">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Yuji_19">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="前言 学习js中的对象，遇到了问题，感觉自己理解对象原型的时候迷失了；找了很多资料，也动手试过，算是理解了。  首先要清楚JavaScript中的几乎一切都是对象，而对象又分为普通对象和函数对象，并且一切函数都由Function构造。  第一个问题：什么是普通对象，函数对象呢？">
+<meta name="keywords" content="学与问,JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="头脑风暴-JavaScript中的对象原型">
+<meta property="og:url" content="http://yoursite.com/2018/05/04/JS-object/index.html">
 <meta property="og:site_name" content="Yuji_19">
-<meta property="og:description" content="前端，HTML，css，js">
+<meta property="og:description" content="前言 学习js中的对象，遇到了问题，感觉自己理解对象原型的时候迷失了；找了很多资料，也动手试过，算是理解了。  首先要清楚JavaScript中的几乎一切都是对象，而对象又分为普通对象和函数对象，并且一切函数都由Function构造。  第一个问题：什么是普通对象，函数对象呢？">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/05/04/JS-object/F1.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/04/JS-object/object.png">
+<meta property="og:updated_time" content="2018-05-04T08:18:44.659Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yuji_19">
-<meta name="twitter:description" content="前端，HTML，css，js">
+<meta name="twitter:title" content="头脑风暴-JavaScript中的对象原型">
+<meta name="twitter:description" content="前言 学习js中的对象，遇到了问题，感觉自己理解对象原型的时候迷失了；找了很多资料，也动手试过，算是理解了。  首先要清楚JavaScript中的几乎一切都是对象，而对象又分为普通对象和函数对象，并且一切函数都由Function构造。  第一个问题：什么是普通对象，函数对象呢？">
+<meta name="twitter:image" content="http://yoursite.com/2018/05/04/JS-object/F1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Yuji_19" type="application/atom+xml">
   
@@ -166,36 +171,71 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-JS-object" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/04/JS-object/" class="archive-article-date">
-  	<time datetime="2018-05-04T06:46:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-04</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/04/JS-object/">头脑风暴-JavaScript中的对象原型</a>
+    <h1 class="article-title" itemprop="name">
+      头脑风暴-JavaScript中的对象原型
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/05/04/JS-object/" class="archive-article-date">
+  	<time datetime="2018-05-04T06:46:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>学习js中的对象，遇到了问题，感觉自己理解对象原型的时候迷失了；找了很多资料，也动手试过，算是理解了。</p>
+</blockquote>
+<p>首先要清楚JavaScript中的几乎一切都是对象，而对象又分为普通对象和函数对象，并且一切函数都由Function构造。</p>
+<p> 第一个问题：什么是普通对象，函数对象呢？<br><a id="more"></a></p>
+<p><strong>普通对象：</strong>由构造函数创建但本身并不是函数，有<code>__proto__</code>属性，没有prototype属性。<br>栗子：<code>var a = new Object();</code><br><strong>函数对象：</strong>同样由构造函数创建但本身就是一个函数，有<code>__proto__</code>属性，也有prototype属性。<br>栗子：<code>function F(){}</code></p>
+<p>共同点：都有<code>__proto__</code>属性，因为每个对象都会有。<br>区别：函数对象有prototype属性，普通对象没有。</p>
+<p>由此引出第二个问题：两个属性<code>__proto__</code> 和 prototype作用是什么？<br><code>__proto__</code>指向对象的原型。<br>prototype指向用该对象创建的对象要继承的原型</p>
+<p>可以这么理解：<br>对象的<code>__proto__</code>指向的是创建该对象的构造函数的原型属性（prototype）。<br>举个栗子：<br><code>function F(){}
+ var f = new F();
+ console.log(f.__proto__ == F.prototype)；
+ console.log(F.__proto__ == Function.prototype)</code><br> 输出结果都是true，验证了上面所说是对的。<br> 第二个true，是因为JavaScript中的一切函数都由Function构造的，开始就说过了。</p>
+<p>但是上面所述还隐藏了第三个问题：按照上面的逻辑Function的原型是Function.prototype，那么Function.prototype的原型又是谁呢？<br>我们可以动手试验一下<br><code>console.log(Object.prototype);
+console.log(Function.prototype.__proto__);
+console.log(Object.prototype == Function.prototype.__proto__)</code><br>输出结果是<img src="/2018/05/04/JS-object/F1.jpg"><br>可以看到，最后输出了true，说明Object.prototype 和<code>Function.prototype.__proto__</code>是同一个原型对象，也是我们苦苦寻找的顶层原型对象。</p>
+<p>最后用一张图来概括<br><img src="/2018/05/04/JS-object/object.png"></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -211,99 +251,127 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/05/04/JS-object/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/02/scriptlanguage/" class="archive-article-date">
-  	<time datetime="2018-05-02T02:35:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-02</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/02/scriptlanguage/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">编译型语言，解释型语言，脚本语言</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/02/scriptlanguage/">编译型语言，解释型语言，脚本语言</a>
-    </h1>
+  
+  
+  <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNjA5My8xMjYyOA==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+  
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">学与问</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机语言</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/27/firstblog/" class="archive-article-date">
-  	<time datetime="2018-04-27T02:33:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/27/firstblog/">FirstBlog--Hexo+GitHub搭建个人博客</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">学与问</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -326,8 +394,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
