@@ -16,13 +16,14 @@
 <meta property="og:site_name" content="Yuji_19">
 <meta property="og:description" content="前言 学习js中的对象，遇到了问题，感觉自己理解对象原型的时候迷失了；找了很多资料，也动手试过，算是理解了。  首先要清楚JavaScript中的几乎一切都是对象，而对象又分为普通对象和函数对象，并且一切函数都由Function构造。  第一个问题：什么是普通对象，函数对象呢？">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/05/04/JS-object/F2.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/05/04/JS-object/F1.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/05/04/JS-object/object.png">
-<meta property="og:updated_time" content="2018-05-04T08:18:44.659Z">
+<meta property="og:updated_time" content="2018-05-05T01:04:23.164Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="头脑风暴-JavaScript中的对象原型">
 <meta name="twitter:description" content="前言 学习js中的对象，遇到了问题，感觉自己理解对象原型的时候迷失了；找了很多资料，也动手试过，算是理解了。  首先要清楚JavaScript中的几乎一切都是对象，而对象又分为普通对象和函数对象，并且一切函数都由Function构造。  第一个问题：什么是普通对象，函数对象呢？">
-<meta name="twitter:image" content="http://yoursite.com/2018/05/04/JS-object/F1.jpg">
+<meta name="twitter:image" content="http://yoursite.com/2018/05/04/JS-object/F2.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Yuji_19" type="application/atom+xml">
   
@@ -203,10 +204,12 @@
  var f = new F();
  console.log(f.__proto__ == F.prototype)；
  console.log(F.__proto__ == Function.prototype)</code><br> 输出结果都是true，验证了上面所说是对的。<br> 第二个true，是因为JavaScript中的一切函数都由Function构造的，开始就说过了。</p>
-<p>但是上面所述还隐藏了第三个问题：按照上面的逻辑Function的原型是Function.prototype，那么Function.prototype的原型又是谁呢？<br>我们可以动手试验一下<br><code>console.log(Object.prototype);
+<p>但是上面所述还隐藏了第三个问题：按照上面的逻辑Function的原型是应该是构造Function的函数的prototype，真是这样吗？<br>to young to simple…<br>之前已经说过，一切函数都由Function构造，那么Function也不例外，它由自己构造（虽然很奇怪，但是暂且这么理解吧）,<code>Function.__prot__ == Function.prototype</code>应该是成立的。可以试试<br><code>cconsole.log(Function.__proto__);
+console.log(Function.prototype);
+console.log(Function.__proto__ == Function.prototype);</code><br>输出结果是<img src="/2018/05/04/JS-object/F2.jpg"><br>证明我的理解是对的，但是还有问题：Function.prototype的原型是谁呢？<br>实践出真知，我们可以动手试验一下<br><code>console.log(Object.prototype);
 console.log(Function.prototype.__proto__);
 console.log(Object.prototype == Function.prototype.__proto__)</code><br>输出结果是<img src="/2018/05/04/JS-object/F1.jpg"><br>可以看到，最后输出了true，说明Object.prototype 和<code>Function.prototype.__proto__</code>是同一个原型对象，也是我们苦苦寻找的顶层原型对象。</p>
-<p>最后用一张图来概括<br><img src="/2018/05/04/JS-object/object.png"></p>
+<p>最后用一张图来概括(参考了网上很多的图后，按照自己理解画的)<br><img src="/2018/05/04/JS-object/object.png"></p>
 
       
 
