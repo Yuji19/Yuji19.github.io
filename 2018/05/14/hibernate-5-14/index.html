@@ -8,21 +8,21 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>初学Hibernate--property部分映射 | Yuji_19</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="property中的各个属性 name=””  指定要映射的类的属性名 column=”” 指定表中的字段名 type=””  指定该属性的类型 precision=”” 指定数值的有效位数 scale=””     指定小数的位数 not-null=”true|false” 是否可为空 update=”true|false” 是否允许update该字段 insert=”true|false” 是">
+  <meta name="description" content="property中的各个属性 name=””  指定要映射的类的属性名 column=”” 指定表中的字段名 type=””  指定该属性的类型 precision=”” 指定数值的有效位数 scale=””     指定小数的位数 not-null=”true|false” 是否可为空">
 <meta name="keywords" content="Hibernate">
 <meta property="og:type" content="article">
 <meta property="og:title" content="初学Hibernate--property部分映射">
 <meta property="og:url" content="http://yoursite.com/2018/05/14/hibernate-5-14/index.html">
 <meta property="og:site_name" content="Yuji_19">
-<meta property="og:description" content="property中的各个属性 name=””  指定要映射的类的属性名 column=”” 指定表中的字段名 type=””  指定该属性的类型 precision=”” 指定数值的有效位数 scale=””     指定小数的位数 not-null=”true|false” 是否可为空 update=”true|false” 是否允许update该字段 insert=”true|false” 是">
+<meta property="og:description" content="property中的各个属性 name=””  指定要映射的类的属性名 column=”” 指定表中的字段名 type=””  指定该属性的类型 precision=”” 指定数值的有效位数 scale=””     指定小数的位数 not-null=”true|false” 是否可为空">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2018/05/14/hibernate-5-14/t1.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/05/14/hibernate-5-14/t3.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/05/14/hibernate-5-14/t2.jpg">
-<meta property="og:updated_time" content="2018-05-14T15:20:17.638Z">
+<meta property="og:updated_time" content="2018-05-14T15:26:59.786Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初学Hibernate--property部分映射">
-<meta name="twitter:description" content="property中的各个属性 name=””  指定要映射的类的属性名 column=”” 指定表中的字段名 type=””  指定该属性的类型 precision=”” 指定数值的有效位数 scale=””     指定小数的位数 not-null=”true|false” 是否可为空 update=”true|false” 是否允许update该字段 insert=”true|false” 是">
+<meta name="twitter:description" content="property中的各个属性 name=””  指定要映射的类的属性名 column=”” 指定表中的字段名 type=””  指定该属性的类型 precision=”” 指定数值的有效位数 scale=””     指定小数的位数 not-null=”true|false” 是否可为空">
 <meta name="twitter:image" content="http://yoursite.com/2018/05/14/hibernate-5-14/t1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Yuji_19" type="application/atom+xml">
@@ -199,18 +199,20 @@
 <li>precision=”” 指定数值的有效位数</li>
 <li>scale=””     指定小数的位数</li>
 <li>not-null=”true|false” 是否可为空</li>
+</ul>
+<a id="more"></a>
+<ul>
 <li>update=”true|false” 是否允许update该字段</li>
 <li>insert=”true|false” 是否允许insert该字段</li>
 <li>unique=”ture|false” 是否设置为唯一约束</li>
 <li>unique-key=”” 唯一约束名</li>
 <li>lazy=”true|false” 指定是否延迟加载</li>
 <li>index=””  为该字段指定索引</li>
-<li>formula=”SQL语句” 伪列–指定formula中的SQL语句执行后的结果赋值给该属性<br>具体实现过程：<img src="/2018/05/14/hibernate-5-14/t1.jpg">
-<img src="/2018/05/14/hibernate-5-14/t3.jpg">
-<img src="/2018/05/14/hibernate-5-14/t2.jpg">
-</li>
+<li>formula=”SQL语句” 伪列–指定formula中的SQL语句执行后的结果赋值给该属性<br>具体实现过程：<br><code>User.hmb.xml</code></li>
 </ul>
-<p>从结果可以看出把formula中的语句当作子查询进行处理了。<br><a id="more"></a></p>
+<img src="/2018/05/14/hibernate-5-14/t1.jpg">
+<p><code>TestDemo.java</code><br><img src="/2018/05/14/hibernate-5-14/t3.jpg"><br><img src="/2018/05/14/hibernate-5-14/t2.jpg"></p>
+<p>从结果可以看出把formula中的语句当作子查询进行处理了。</p>
 <h3 id="lt-class-gt-中的where属性"><a href="#lt-class-gt-中的where属性" class="headerlink" title="&lt;class&gt;中的where属性"></a><code>&lt;class&gt;中的where属性</code></h3><p>在每一句SQL语句后面添加where中的条件</p>
 
       
