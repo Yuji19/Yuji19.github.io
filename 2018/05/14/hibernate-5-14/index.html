@@ -6,24 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>头脑风暴-JavaScript中的对象原型 | Yuji_19</title>
+  <title>初学Hibernate--property部分映射 | Yuji_19</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言 学习js中的对象，遇到了问题，感觉自己理解对象原型的时候迷失了；找了很多资料，也动手试过，算是理解了。  首先要清楚JavaScript中的几乎一切都是对象，而对象又分为普通对象和函数对象，并且一切函数都由Function构造。  第一个问题：什么是普通对象，函数对象呢？">
-<meta name="keywords" content="学与问,JavaScript">
+  <meta name="description" content="property中的各个属性 name=””  指定要映射的类的属性名 column=”” 指定表中的字段名 type=””  指定该属性的类型 precision=”” 指定数值的有效位数 scale=””     指定小数的位数 not-null=”true|false” 是否可为空 update=”true|false” 是否允许update该字段 insert=”true|false” 是">
+<meta name="keywords" content="Hibernate">
 <meta property="og:type" content="article">
-<meta property="og:title" content="头脑风暴-JavaScript中的对象原型">
-<meta property="og:url" content="http://yoursite.com/2018/05/04/JS-object/index.html">
+<meta property="og:title" content="初学Hibernate--property部分映射">
+<meta property="og:url" content="http://yoursite.com/2018/05/14/hibernate-5-14/index.html">
 <meta property="og:site_name" content="Yuji_19">
-<meta property="og:description" content="前言 学习js中的对象，遇到了问题，感觉自己理解对象原型的时候迷失了；找了很多资料，也动手试过，算是理解了。  首先要清楚JavaScript中的几乎一切都是对象，而对象又分为普通对象和函数对象，并且一切函数都由Function构造。  第一个问题：什么是普通对象，函数对象呢？">
+<meta property="og:description" content="property中的各个属性 name=””  指定要映射的类的属性名 column=”” 指定表中的字段名 type=””  指定该属性的类型 precision=”” 指定数值的有效位数 scale=””     指定小数的位数 not-null=”true|false” 是否可为空 update=”true|false” 是否允许update该字段 insert=”true|false” 是">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/2018/05/04/JS-object/F2.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/05/04/JS-object/F1.jpg">
-<meta property="og:image" content="http://yoursite.com/2018/05/04/JS-object/object.png">
-<meta property="og:updated_time" content="2018-05-05T01:04:23.164Z">
+<meta property="og:image" content="http://yoursite.com/2018/05/14/hibernate-5-14/t1.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/14/hibernate-5-14/t3.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/14/hibernate-5-14/t2.jpg">
+<meta property="og:updated_time" content="2018-05-14T15:20:17.638Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="头脑风暴-JavaScript中的对象原型">
-<meta name="twitter:description" content="前言 学习js中的对象，遇到了问题，感觉自己理解对象原型的时候迷失了；找了很多资料，也动手试过，算是理解了。  首先要清楚JavaScript中的几乎一切都是对象，而对象又分为普通对象和函数对象，并且一切函数都由Function构造。  第一个问题：什么是普通对象，函数对象呢？">
-<meta name="twitter:image" content="http://yoursite.com/2018/05/04/JS-object/F2.jpg">
+<meta name="twitter:title" content="初学Hibernate--property部分映射">
+<meta name="twitter:description" content="property中的各个属性 name=””  指定要映射的类的属性名 column=”” 指定表中的字段名 type=””  指定该属性的类型 precision=”” 指定数值的有效位数 scale=””     指定小数的位数 not-null=”true|false” 是否可为空 update=”true|false” 是否允许update该字段 insert=”true|false” 是">
+<meta name="twitter:image" content="http://yoursite.com/2018/05/14/hibernate-5-14/t1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Yuji_19" type="application/atom+xml">
   
@@ -172,44 +172,46 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-JS-object" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-hibernate-5-14" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      头脑风暴-JavaScript中的对象原型
+      初学Hibernate--property部分映射
     </h1>
   
 
         
-        <a href="/2018/05/04/JS-object/" class="archive-article-date">
-  	<time datetime="2018-05-04T06:46:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-04</time>
+        <a href="/2018/05/14/hibernate-5-14/" class="archive-article-date">
+  	<time datetime="2018-05-14T14:07:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-14</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
-<p>学习js中的对象，遇到了问题，感觉自己理解对象原型的时候迷失了；找了很多资料，也动手试过，算是理解了。</p>
-</blockquote>
-<p>首先要清楚JavaScript中的几乎一切都是对象，而对象又分为普通对象和函数对象，并且一切函数都由Function构造。</p>
-<p> 第一个问题：什么是普通对象，函数对象呢？<br><a id="more"></a></p>
-<p><strong>普通对象：</strong>由构造函数创建但本身并不是函数，有<code>__proto__</code>属性，没有prototype属性。<br>栗子：<code>var a = new Object();</code><br><strong>函数对象：</strong>同样由构造函数创建但本身就是一个函数，有<code>__proto__</code>属性，也有prototype属性。<br>栗子：<code>function F(){}</code></p>
-<p>共同点：都有<code>__proto__</code>属性，因为每个对象都会有。<br>区别：函数对象有prototype属性，普通对象没有。</p>
-<p>由此引出第二个问题：两个属性<code>__proto__</code> 和 prototype作用是什么？<br><code>__proto__</code>指向对象的原型。<br>prototype指向用该对象创建的对象要继承的原型</p>
-<p>可以这么理解：<br>对象的<code>__proto__</code>指向的是创建该对象的构造函数的原型属性（prototype）。<br>举个栗子：<br><code>function F(){}
- var f = new F();
- console.log(f.__proto__ == F.prototype)；
- console.log(F.__proto__ == Function.prototype)</code><br> 输出结果都是true，验证了上面所说是对的。<br> 第二个true，是因为JavaScript中的一切函数都由Function构造的，开始就说过了。</p>
-<p>但是上面所述还隐藏了第三个问题：按照上面的逻辑Function的原型是应该是构造Function的函数的prototype，真是这样吗？<br>to young to simple…<br>之前已经说过，一切函数都由Function构造，那么Function也不例外，它由自己构造（虽然很奇怪，但是暂且这么理解吧）,<code>Function.__prot__ == Function.prototype</code>应该是成立的。可以试试<br><code>cconsole.log(Function.__proto__);
-console.log(Function.prototype);
-console.log(Function.__proto__ == Function.prototype);</code><br>输出结果是<img src="/2018/05/04/JS-object/F2.jpg"><br>证明我的理解是对的，但是还有问题：Function.prototype的原型是谁呢？<br>实践出真知，我们可以动手试验一下<br><code>console.log(Object.prototype);
-console.log(Function.prototype.__proto__);
-console.log(Object.prototype == Function.prototype.__proto__)</code><br>输出结果是<img src="/2018/05/04/JS-object/F1.jpg"><br>可以看到，最后输出了true，说明Object.prototype 和<code>Function.prototype.__proto__</code>是同一个原型对象，也是我们苦苦寻找的顶层原型对象。</p>
-<p>最后用一张图来概括(参考了网上很多的图后，按照自己理解画的)<br><img src="/2018/05/04/JS-object/object.png"></p>
+        <h3 id="property中的各个属性"><a href="#property中的各个属性" class="headerlink" title="property中的各个属性"></a><code>property中的各个属性</code></h3><ul>
+<li>name=””  指定要映射的类的属性名</li>
+<li>column=”” 指定表中的字段名</li>
+<li>type=””  指定该属性的类型</li>
+<li>precision=”” 指定数值的有效位数</li>
+<li>scale=””     指定小数的位数</li>
+<li>not-null=”true|false” 是否可为空</li>
+<li>update=”true|false” 是否允许update该字段</li>
+<li>insert=”true|false” 是否允许insert该字段</li>
+<li>unique=”ture|false” 是否设置为唯一约束</li>
+<li>unique-key=”” 唯一约束名</li>
+<li>lazy=”true|false” 指定是否延迟加载</li>
+<li>index=””  为该字段指定索引</li>
+<li>formula=”SQL语句” 伪列–指定formula中的SQL语句执行后的结果赋值给该属性<br>具体实现过程：<img src="/2018/05/14/hibernate-5-14/t1.jpg">
+<img src="/2018/05/14/hibernate-5-14/t3.jpg">
+<img src="/2018/05/14/hibernate-5-14/t2.jpg">
+</li>
+</ul>
+<p>从结果可以看出把formula中的语句当作子查询进行处理了。<br><a id="more"></a></p>
+<h3 id="lt-class-gt-中的where属性"><a href="#lt-class-gt-中的where属性" class="headerlink" title="&lt;class&gt;中的where属性"></a><code>&lt;class&gt;中的where属性</code></h3><p>在每一句SQL语句后面添加where中的条件</p>
 
       
 
@@ -244,11 +246,7 @@ console.log(Object.prototype == Function.prototype.__proto__)</code><br>输出�
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">学与问</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
         		</li>
       		
 		</ul>
@@ -304,7 +302,7 @@ console.log(Object.prototype == Function.prototype.__proto__)</code><br>输出�
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/05/04/JS-object/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/05/14/hibernate-5-14/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -318,18 +316,9 @@ console.log(Object.prototype == Function.prototype.__proto__)</code><br>输出�
   
 <nav id="article-nav">
   
-    <a href="/2018/05/11/hibernate-5-11/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          初学Hibernate--环境配置与用法
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/05/02/scriptlanguage/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">编译型语言，解释型语言，脚本语言</div>
+    <a href="/2018/05/12/hibernate-5-12/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">初学Hibernate--不同版本的Hibernate获取SessionFactory</div>
       <i class="icon-circle-right"></i>
     </a>
   

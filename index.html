@@ -168,6 +168,100 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-hibernate-5-14" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/14/hibernate-5-14/">初学Hibernate--property部分映射</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/14/hibernate-5-14/" class="archive-article-date">
+  	<time datetime="2018-05-14T14:07:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="property中的各个属性"><a href="#property中的各个属性" class="headerlink" title="property中的各个属性"></a><code>property中的各个属性</code></h3><ul>
+<li>name=””  指定要映射的类的属性名</li>
+<li>column=”” 指定表中的字段名</li>
+<li>type=””  指定该属性的类型</li>
+<li>precision=”” 指定数值的有效位数</li>
+<li>scale=””     指定小数的位数</li>
+<li>not-null=”true|false” 是否可为空</li>
+<li>update=”true|false” 是否允许update该字段</li>
+<li>insert=”true|false” 是否允许insert该字段</li>
+<li>unique=”ture|false” 是否设置为唯一约束</li>
+<li>unique-key=”” 唯一约束名</li>
+<li>lazy=”true|false” 指定是否延迟加载</li>
+<li>index=””  为该字段指定索引</li>
+<li>formula=”SQL语句” 伪列–指定formula中的SQL语句执行后的结果赋值给该属性<br>具体实现过程：<img src="/2018/05/14/hibernate-5-14/t1.jpg">
+<img src="/2018/05/14/hibernate-5-14/t3.jpg">
+<img src="/2018/05/14/hibernate-5-14/t2.jpg">
+</li>
+</ul>
+<p>从结果可以看出把formula中的语句当作子查询进行处理了。<br>
+        
+          <a class="article-more-a" href="/2018/05/14/hibernate-5-14/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/14/hibernate-5-14/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-hibernate-5-12" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -657,10 +751,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">学与问</a>
               </li>
              
@@ -669,11 +759,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机语言</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机语言</a>
               </li>
             
             <div class="clearfix"></div>
