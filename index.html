@@ -168,6 +168,84 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-hibernate-5-15" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/15/hibernate-5-15/">初学Hibernate-- 一级缓存</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/15/hibernate-5-15/" class="archive-article-date">
+  	<time datetime="2018-05-15T02:26:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一级缓存（session级缓存）"><a href="#一级缓存（session级缓存）" class="headerlink" title="一级缓存（session级缓存）"></a>一级缓存（session级缓存）</h3><p><strong>原理</strong>：Session 中定义一系列集合来存储数据，构成Session的缓存，只要Session没有关闭，数据就会一直存在，除非执行如clear(),evict(),flush()操作。当执行如save(),get(),update()等操作时，会把持久化对象保存在关联的session中，当下一次在执行这些操作时，先在session的缓存中查询获取，没查找到再到数据库中去查询。不关闭session，缓存并不会清空。不提交不会发送SQL语句。</p>
+<p><strong>作用</strong>：减少数据库的访问次数，缓存会把改变的SQL语句合并，提高效率。</p>
+<p>一级缓存的真正缓存地点<br><img src="/2018/05/15/hibernate-5-15/一级0.jpg"><br><img src="/2018/05/15/hibernate-5-15/一级1.jpg"><br><img src="/2018/05/15/hibernate-5-15/一级2.jpg"></p>
+        
+          <a class="article-more-a" href="/2018/05/15/hibernate-5-15/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/15/hibernate-5-15/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-hibernate-5-14" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

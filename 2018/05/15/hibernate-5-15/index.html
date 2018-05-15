@@ -6,18 +6,31 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Yuji_19</title>
+  <title>初学Hibernate-- 一级缓存 | Yuji_19</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前端，HTML，css，js">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Yuji_19">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="一级缓存（session级缓存）原理：Session 中定义一系列集合来存储数据，构成Session的缓存，只要Session没有关闭，数据就会一直存在，除非执行如clear(),evict(),flush()操作。当执行如save(),get(),update()等操作时，会把持久化对象保存在关联的session中，当下一次在执行这些操作时，先在session的缓存中查询获取，没查找到再到数据库">
+<meta name="keywords" content="Hibernate">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初学Hibernate-- 一级缓存">
+<meta property="og:url" content="http://yoursite.com/2018/05/15/hibernate-5-15/index.html">
 <meta property="og:site_name" content="Yuji_19">
-<meta property="og:description" content="前端，HTML，css，js">
+<meta property="og:description" content="一级缓存（session级缓存）原理：Session 中定义一系列集合来存储数据，构成Session的缓存，只要Session没有关闭，数据就会一直存在，除非执行如clear(),evict(),flush()操作。当执行如save(),get(),update()等操作时，会把持久化对象保存在关联的session中，当下一次在执行这些操作时，先在session的缓存中查询获取，没查找到再到数据库">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/05/15/hibernate-5-15/一级0.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/15/hibernate-5-15/一级1.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/15/hibernate-5-15/一级2.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/15/hibernate-5-15/一级3.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/15/hibernate-5-15/一级4.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/15/hibernate-5-15/一级5.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/15/hibernate-5-15/一级6.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/15/hibernate-5-15/一级7.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/15/hibernate-5-15/一级8.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/15/hibernate-5-15/一级9.jpg">
+<meta property="og:updated_time" content="2018-05-15T03:57:45.336Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yuji_19">
-<meta name="twitter:description" content="前端，HTML，css，js">
+<meta name="twitter:title" content="初学Hibernate-- 一级缓存">
+<meta name="twitter:description" content="一级缓存（session级缓存）原理：Session 中定义一系列集合来存储数据，构成Session的缓存，只要Session没有关闭，数据就会一直存在，除非执行如clear(),evict(),flush()操作。当执行如save(),get(),update()等操作时，会把持久化对象保存在关联的session中，当下一次在执行这些操作时，先在session的缓存中查询获取，没查找到再到数据库">
+<meta name="twitter:image" content="http://yoursite.com/2018/05/15/hibernate-5-15/一级0.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Yuji_19" type="application/atom+xml">
   
@@ -166,36 +179,67 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-hibernate-5-15" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      初学Hibernate-- 一级缓存
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/15/hibernate-5-15/" class="archive-article-date">
+
+        
+        <a href="/2018/05/15/hibernate-5-15/" class="archive-article-date">
   	<time datetime="2018-05-15T02:26:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-15</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/15/hibernate-5-15/">初学Hibernate-- 一级缓存</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一级缓存（session级缓存）"><a href="#一级缓存（session级缓存）" class="headerlink" title="一级缓存（session级缓存）"></a>一级缓存（session级缓存）</h3><p><strong>原理</strong>：Session 中定义一系列集合来存储数据，构成Session的缓存，只要Session没有关闭，数据就会一直存在，除非执行如clear(),evict(),flush()操作。当执行如save(),get(),update()等操作时，会把持久化对象保存在关联的session中，当下一次在执行这些操作时，先在session的缓存中查询获取，没查找到再到数据库中去查询。不关闭session，缓存并不会清空。不提交不会发送SQL语句。</p>
+<p><strong>作用</strong>：减少数据库的访问次数，缓存会把改变的SQL语句合并，提高效率。</p>
+<p>一级缓存的真正缓存地点<br><img src="/2018/05/15/hibernate-5-15/一级0.jpg"><br><img src="/2018/05/15/hibernate-5-15/一级1.jpg"><br><img src="/2018/05/15/hibernate-5-15/一级2.jpg"></p>
+<a id="more"></a>
+<p><code>执行语句User  u1 = session.get(User.class, 1);后，持久化对象保存在了session中</code><br><img src="/2018/05/15/hibernate-5-15/一级3.jpg"><br><img src="/2018/05/15/hibernate-5-15/一级4.jpg"></p>
+<p><code>执行语句session.clear();后，缓存被清空</code><br><img src="/2018/05/15/hibernate-5-15/一级5.jpg"></p>
+<p><code>执行语句User  u2 = session.get(User.class, 1);后，持久化对象又一次保存在了session中</code><br><img src="/2018/05/15/hibernate-5-15/一级6.jpg"></p>
+<p>最后输出结果：<br><img src="/2018/05/15/hibernate-5-15/一级7.jpg"><br><code>执行语句User  u3 = session.get(User.class, 1);并没有执行了select语句</code><br>说明直接在session的缓存中获取。</p>
+<h3 id="怎么理解缓存会合并SQL语句"><a href="#怎么理解缓存会合并SQL语句" class="headerlink" title="怎么理解缓存会合并SQL语句"></a>怎么理解缓存会合并SQL语句</h3><p>举个栗子：若现在在session缓存中存在持久化对象A，那么A.setName(“B”)后，又执行了一次A.setName(“C”),多次改变了保存在session中持久化对象的属性，但是没有立即发送SQL语句更新到数据库，直到提交事务，会判断一级缓存中数据是否与快照区一致，如果不一样，就会发送update语句（发送了一次的SQL语句），同步到数据库。</p>
+<p>实践出真知，过程如下：</p>
+<img src="/2018/05/15/hibernate-5-15/一级8.jpg">
+<img src="/2018/05/15/hibernate-5-15/一级9.jpg">
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -207,259 +251,127 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/05/15/hibernate-5-15/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/14/hibernate-5-14/" class="archive-article-date">
-  	<time datetime="2018-05-14T14:07:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-14</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/14/hibernate-5-14/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">初学Hibernate--property部分映射</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/14/hibernate-5-14/">初学Hibernate--property部分映射</a>
-    </h1>
+  
+  
+  <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNjA5My8xMjYyOA==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+  
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/12/hibernate-5-12/" class="archive-article-date">
-  	<time datetime="2018-05-12T08:07:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/12/hibernate-5-12/">初学Hibernate--不同版本的Hibernate获取SessionFactory</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/11/hibernate-5-11/" class="archive-article-date">
-  	<time datetime="2018-05-11T12:05:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/11/hibernate-5-11/">初学Hibernate--环境配置与用法</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/04/JS-object/" class="archive-article-date">
-  	<time datetime="2018-05-04T06:46:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/04/JS-object/">头脑风暴-JavaScript中的对象原型</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">学与问</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/02/scriptlanguage/" class="archive-article-date">
-  	<time datetime="2018-05-02T02:35:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/02/scriptlanguage/">编译型语言，解释型语言，脚本语言</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">学与问</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机语言</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/27/firstblog/" class="archive-article-date">
-  	<time datetime="2018-04-27T02:33:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/27/firstblog/">FirstBlog--Hexo+GitHub搭建个人博客</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">学与问</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -482,8 +394,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
