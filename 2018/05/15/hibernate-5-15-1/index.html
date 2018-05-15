@@ -6,42 +6,36 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>FirstBlog--Hexo+GitHub搭建个人博客 | Yuji_19</title>
+  <title>初学Hibernate-- 映射配置:集合、组件 | Yuji_19</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言   记得刚进大学不久，好多老师都建议我们尝试自己去搭建一个博客，有着个想法，后来听别人说挺难的，就不了了之。25号那天晚上，想着反正也要学前端，不如就搭建个blog吧！历经一天半，基本已经搭建好了，当然了，只是最简单的而已，还有很多功能没有添加，先记录以下搭建过程吧！博主是在Windows下搭建的，所以下面说的是Windows下的搭建。。。">
-<meta name="keywords" content="学与问">
+  <meta name="description" content="集合的映射配置试验过程如下： TestDemo.java  User.java">
+<meta name="keywords" content="Hibernate">
 <meta property="og:type" content="article">
-<meta property="og:title" content="FirstBlog--Hexo+GitHub搭建个人博客">
-<meta property="og:url" content="http://yoursite.com/2018/04/27/firstblog/index.html">
+<meta property="og:title" content="初学Hibernate-- 映射配置:集合、组件">
+<meta property="og:url" content="http://yoursite.com/2018/05/15/hibernate-5-15-1/index.html">
 <meta property="og:site_name" content="Yuji_19">
-<meta property="og:description" content="前言   记得刚进大学不久，好多老师都建议我们尝试自己去搭建一个博客，有着个想法，后来听别人说挺难的，就不了了之。25号那天晚上，想着反正也要学前端，不如就搭建个blog吧！历经一天半，基本已经搭建好了，当然了，只是最简单的而已，还有很多功能没有添加，先记录以下搭建过程吧！博主是在Windows下搭建的，所以下面说的是Windows下的搭建。。。">
+<meta property="og:description" content="集合的映射配置试验过程如下： TestDemo.java  User.java">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/2018/04/27/firstblog/git1.png">
-<meta property="og:image" content="http://yoursite.com/2018/04/27/firstblog/git2.png">
-<meta property="og:image" content="http://yoursite.com/2018/04/27/firstblog/git3.png">
-<meta property="og:image" content="http://yoursite.com/2018/04/27/firstblog/git4.png">
-<meta property="og:image" content="http://yoursite.com/2018/04/27/firstblog/node1.png">
-<meta property="og:image" content="http://yoursite.com/2018/04/27/firstblog/node2.png">
-<meta property="og:image" content="http://yoursite.com/2018/04/27/firstblog/node3.png">
-<meta property="og:image" content="http://yoursite.com/2018/04/27/firstblog/node4.png">
-<meta property="og:image" content="http://yoursite.com/2018/04/27/firstblog/hexo1.png">
-<meta property="og:image" content="http://yoursite.com/2018/04/27/firstblog/hexo2.png">
-<meta property="og:image" content="http://yoursite.com/2018/04/27/firstblog/hexo3.png">
-<meta property="og:image" content="http://yoursite.com/2018/04/27/firstblog/hexo4.png">
-<meta property="og:image" content="http://yoursite.com/2018/04/27/firstblog/hexo5.png">
-<meta property="og:image" content="http://yoursite.com/2018/04/27/firstblog/github1.png">
-<meta property="og:image" content="http://yoursite.com/2018/04/27/firstblog/github2.png">
-<meta property="og:image" content="http://yoursite.com/2018/04/27/firstblog/github3.png">
-<meta property="og:image" content="http://yoursite.com/2018/04/27/firstblog/github4.png">
-<meta property="og:image" content="http://yoursite.com/2018/04/27/firstblog/github5.png">
-<meta property="og:image" content="http://yoursite.com/2018/04/27/firstblog/github6.png">
-<meta property="og:image" content="http://yoursite.com/2018/04/27/firstblog/github7.png">
-<meta property="og:image" content="http://yoursite.com/2018/04/27/firstblog/github8.png">
-<meta property="og:updated_time" content="2018-05-04T08:20:03.076Z">
+<meta property="og:image" content="http://yoursite.com/2018/05/15/hibernate-5-15-1/t1.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/15/hibernate-5-15-1/t2.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/15/hibernate-5-15-1/t3.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/15/hibernate-5-15-1/t4.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/15/hibernate-5-15-1/组件1.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/15/hibernate-5-15-1/组件2.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/15/hibernate-5-15-1/组件3.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/15/hibernate-5-15-1/组件6.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/15/hibernate-5-15-1/组件4.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/15/hibernate-5-15-1/组件5.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/15/hibernate-5-15-1/组件7.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/15/hibernate-5-15-1/组件8.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/15/hibernate-5-15-1/组件9.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/15/hibernate-5-15-1/组件10.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/05/15/hibernate-5-15-1/组件11.jpg">
+<meta property="og:updated_time" content="2018-05-15T11:00:44.433Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="FirstBlog--Hexo+GitHub搭建个人博客">
-<meta name="twitter:description" content="前言   记得刚进大学不久，好多老师都建议我们尝试自己去搭建一个博客，有着个想法，后来听别人说挺难的，就不了了之。25号那天晚上，想着反正也要学前端，不如就搭建个blog吧！历经一天半，基本已经搭建好了，当然了，只是最简单的而已，还有很多功能没有添加，先记录以下搭建过程吧！博主是在Windows下搭建的，所以下面说的是Windows下的搭建。。。">
-<meta name="twitter:image" content="http://yoursite.com/2018/04/27/firstblog/git1.png">
+<meta name="twitter:title" content="初学Hibernate-- 映射配置:集合、组件">
+<meta name="twitter:description" content="集合的映射配置试验过程如下： TestDemo.java  User.java">
+<meta name="twitter:image" content="http://yoursite.com/2018/05/15/hibernate-5-15-1/t1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Yuji_19" type="application/atom+xml">
   
@@ -190,66 +184,53 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-firstblog" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-hibernate-5-15-1" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      FirstBlog--Hexo+GitHub搭建个人博客
+      初学Hibernate-- 映射配置:集合、组件
     </h1>
   
 
         
-        <a href="/2018/04/27/firstblog/" class="archive-article-date">
-  	<time datetime="2018-04-27T02:33:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-27</time>
+        <a href="/2018/05/15/hibernate-5-15-1/" class="archive-article-date">
+  	<time datetime="2018-05-15T08:33:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-15</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
-<p>  记得刚进大学不久，好多老师都建议我们尝试自己去搭建一个博客，有着个想法，后来听别人说挺难的，就不了了之。25号那天晚上，想着反正也要学前端，不如就搭建个blog吧！<br>历经一天半，基本已经搭建好了，当然了，只是最简单的而已，还有很多功能没有添加，先记录以下搭建过程吧！<br>博主是在Windows下搭建的，所以下面说的是Windows下的搭建。。。</p>
+        <h3 id="集合的映射配置"><a href="#集合的映射配置" class="headerlink" title="集合的映射配置"></a>集合的映射配置</h3><p>试验过程如下：</p>
+<p>TestDemo.java</p>
+<img src="/2018/05/15/hibernate-5-15-1/t1.jpg">
+<p>User.java<br><a id="more"></a><br><img src="/2018/05/15/hibernate-5-15-1/t2.jpg"></p>
+<p>User.hbm.xml</p>
+<img src="/2018/05/15/hibernate-5-15-1/t3.jpg">
+<p>结果：</p>
+<img src="/2018/05/15/hibernate-5-15-1/t4.jpg">
+<hr>
+<h3 id="组件类的映射配置"><a href="#组件类的映射配置" class="headerlink" title="组件类的映射配置"></a>组件类的映射配置</h3><blockquote>
+<p>Component是一个被包含的对象,它作为值类型被持久化，而非一个实体，所以它不需要单独一个配置文件,进行映射直接包含在User.hbm.xml中，组件类只需要对属性设置get和set方法，不需要声明标识值,User和组件类是包含与被包含关系。</p>
 </blockquote>
-<a id="more"></a>
-<h2 id="1-安装Git"><a href="#1-安装Git" class="headerlink" title="1.安装Git"></a>1.安装<a href="https://git-scm.com/" target="_blank" rel="noopener">Git</a></h2><h3 id="在Git的官网下载Git，不多说直接上图"><a href="#在Git的官网下载Git，不多说直接上图" class="headerlink" title="在Git的官网下载Git，不多说直接上图"></a>在Git的官网下载Git，不多说直接上图</h3><img src="/2018/04/27/firstblog/git1.png">
-<img src="/2018/04/27/firstblog/git2.png">
-<h3 id="官网会根据你系统版本为你会自动下载"><a href="#官网会根据你系统版本为你会自动下载" class="headerlink" title="官网会根据你系统版本为你会自动下载"></a>官网会根据你系统版本为你会自动下载</h3><img src="/2018/04/27/firstblog/git3.png">
-<h3 id="网速慢的话移步—-gt-国内镜源"><a href="#网速慢的话移步—-gt-国内镜源" class="headerlink" title="网速慢的话移步—&gt;国内镜源"></a>网速慢的话移步—&gt;<a href="https://pan.baidu.com/s/1kU5OCOB#list/path=%2Fpub%2Fgit" target="_blank" rel="noopener">国内镜源</a></h3><h3 id="安装完后，在桌面右击找到“Git-Bash-Here”，出现命令行窗口说明Git安装成功！"><a href="#安装完后，在桌面右击找到“Git-Bash-Here”，出现命令行窗口说明Git安装成功！" class="headerlink" title="安装完后，在桌面右击找到“Git Bash Here”，出现命令行窗口说明Git安装成功！"></a>安装完后，在桌面右击找到“Git Bash Here”，出现命令行窗口说明Git安装成功！</h3><img src="/2018/04/27/firstblog/git4.png">
-<hr>
-<h2 id="2-安装node-js-根据你的系统版本选择安装包下载"><a href="#2-安装node-js-根据你的系统版本选择安装包下载" class="headerlink" title="2.安装node.js 根据你的系统版本选择安装包下载"></a>2.安装<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">node.js</a> 根据你的系统版本选择安装包下载</h2><img src="/2018/04/27/firstblog/node1.png">
-<h3 id="下载完后按套路安装，遇到安装路径的选择，可以自定义也可以默认，其他一路next"><a href="#下载完后按套路安装，遇到安装路径的选择，可以自定义也可以默认，其他一路next" class="headerlink" title="下载完后按套路安装，遇到安装路径的选择，可以自定义也可以默认，其他一路next"></a>下载完后按套路安装，遇到安装路径的选择，可以自定义也可以默认，其他一路next</h3><h3 id="安装完后需要配置环境变量，一般情况会自动在Path中添加node-js的安装路径，如果没有，就手动添加吧，毕竟自己动手丰衣足食。"><a href="#安装完后需要配置环境变量，一般情况会自动在Path中添加node-js的安装路径，如果没有，就手动添加吧，毕竟自己动手丰衣足食。" class="headerlink" title="安装完后需要配置环境变量，一般情况会自动在Path中添加node.js的安装路径，如果没有，就手动添加吧，毕竟自己动手丰衣足食。"></a>安装完后需要配置环境变量，一般情况会自动在Path中添加node.js的安装路径，如果没有，就手动添加吧，毕竟自己动手丰衣足食。</h3><img src="/2018/04/27/firstblog/node2.png">
-<img src="/2018/04/27/firstblog/node3.png">
-<h3 id="win-R-输入cmd打开命令行窗口，输入node-v查看node-js-版本，npm-v查看npm版本，一般新的node-js会自带npm"><a href="#win-R-输入cmd打开命令行窗口，输入node-v查看node-js-版本，npm-v查看npm版本，一般新的node-js会自带npm" class="headerlink" title="win+R 输入cmd打开命令行窗口，输入node -v查看node.js 版本，npm -v查看npm版本，一般新的node.js会自带npm"></a>win+R 输入cmd打开命令行窗口，输入node -v查看node.js 版本，npm -v查看npm版本，一般新的node.js会自带npm</h3><img src="/2018/04/27/firstblog/node4.png">
-<h3 id="更多详情参考https-blog-csdn-net-qq-26562641-article-details-72235585"><a href="#更多详情参考https-blog-csdn-net-qq-26562641-article-details-72235585" class="headerlink" title="更多详情参考https://blog.csdn.net/qq_26562641/article/details/72235585"></a>更多详情参考<a href="https://blog.csdn.net/qq_26562641/article/details/72235585" target="_blank" rel="noopener">https://blog.csdn.net/qq_26562641/article/details/72235585</a></h3><hr>
-<h2 id="3-安装Hexo"><a href="#3-安装Hexo" class="headerlink" title="3.安装Hexo"></a>3.安装Hexo</h2><h3 id="建立一个用于存放Hexo的文件夹，右击打开Git-Bash，执行以下命令"><a href="#建立一个用于存放Hexo的文件夹，右击打开Git-Bash，执行以下命令" class="headerlink" title="建立一个用于存放Hexo的文件夹，右击打开Git Bash，执行以下命令"></a>建立一个用于存放Hexo的文件夹，右击打开Git Bash，执行以下命令</h3><h3 id="1-npm-install-g-hexo-cli"><a href="#1-npm-install-g-hexo-cli" class="headerlink" title="1.npm install -g hexo-cli"></a>1.npm install -g hexo-cli</h3><img src="/2018/04/27/firstblog/hexo1.png">
-<h3 id="2-hexo-init-blog-新建网站blog，-blog你可以自定义命名"><a href="#2-hexo-init-blog-新建网站blog，-blog你可以自定义命名" class="headerlink" title="2.hexo init blog , 新建网站blog， blog你可以自定义命名"></a>2.hexo init blog , 新建网站blog， blog你可以自定义命名</h3><img src="/2018/04/27/firstblog/hexo2.png">
-<h3 id="执行到这一步Hexo安装已经完成了，至于基本的命令操作的意思就自己去看hexo官方文档"><a href="#执行到这一步Hexo安装已经完成了，至于基本的命令操作的意思就自己去看hexo官方文档" class="headerlink" title="执行到这一步Hexo安装已经完成了，至于基本的命令操作的意思就自己去看hexo官方文档"></a>执行到这一步Hexo安装已经完成了，至于基本的命令操作的意思就自己去看<a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">hexo官方文档</a></h3><h3 id="这里简单说说在本地预览blog"><a href="#这里简单说说在本地预览blog" class="headerlink" title="这里简单说说在本地预览blog"></a>这里简单说说在本地预览blog</h3><h3 id="执行命令hexo-g"><a href="#执行命令hexo-g" class="headerlink" title="执行命令hexo g"></a>执行命令hexo g</h3><img src="/2018/04/27/firstblog/hexo3.png">
-<h3 id="执行命令-hexo-s"><a href="#执行命令-hexo-s" class="headerlink" title="执行命令 hexo s"></a>执行命令 hexo s</h3><img src="/2018/04/27/firstblog/hexo4.png">
-<h3 id="在浏览器输入localhost-4000-预览"><a href="#在浏览器输入localhost-4000-预览" class="headerlink" title="在浏览器输入localhost:4000,预览"></a>在浏览器输入localhost:4000,预览</h3><img src="/2018/04/27/firstblog/hexo5.png">
-<hr>
-<h1 id="重点来了，-敲黑板！！！"><a href="#重点来了，-敲黑板！！！" class="headerlink" title="重点来了，(敲黑板！！！)"></a>重点来了，(敲黑板！！！)</h1><h2 id="4-把网站部署到GitHub上"><a href="#4-把网站部署到GitHub上" class="headerlink" title="4.把网站部署到GitHub上"></a>4.把网站部署到GitHub上</h2><ul>
-<li><h3 id="注册GitHub账号"><a href="#注册GitHub账号" class="headerlink" title="注册GitHub账号"></a>注册GitHub账号</h3><img src="/2018/04/27/firstblog/github1.png">
-<ul>
-<li><h3 id="建立仓库"><a href="#建立仓库" class="headerlink" title="建立仓库"></a>建立仓库</h3><img src="/2018/04/27/firstblog/github2.png">
-<h3 id="repository名字一定要是-用户名-github-io"><a href="#repository名字一定要是-用户名-github-io" class="headerlink" title="repository名字一定要是 用户名.github.io"></a>repository名字一定要是 用户名.github.io</h3><img src="/2018/04/27/firstblog/github3.png">
-<h3 id="配置repository关联的branch"><a href="#配置repository关联的branch" class="headerlink" title="配置repository关联的branch"></a>配置repository关联的branch</h3><img src="/2018/04/27/firstblog/github4.png"></li>
-<li><h3 id="配置-SSH-KEY连接GitHub"><a href="#配置-SSH-KEY连接GitHub" class="headerlink" title="配置 SSH KEY连接GitHub"></a>配置 SSH KEY连接GitHub</h3><h3 id="网上有很多详细的步骤，就不多说了，参考百度经验：windows下配置SSH-KEY"><a href="#网上有很多详细的步骤，就不多说了，参考百度经验：windows下配置SSH-KEY" class="headerlink" title="网上有很多详细的步骤，就不多说了，参考百度经验：windows下配置SSH KEY"></a>网上有很多详细的步骤，就不多说了，参考<a href="https://jingyan.baidu.com/article/a65957f4e91ccf24e77f9b11.html" target="_blank" rel="noopener">百度经验：windows下配置SSH KEY</a></h3></li>
-<li><h3 id="在网站的根目录下找到-config-yml配置文件，进行hexo-deploy部署"><a href="#在网站的根目录下找到-config-yml配置文件，进行hexo-deploy部署" class="headerlink" title="在网站的根目录下找到_config.yml配置文件，进行hexo deploy部署"></a>在网站的根目录下找到_config.yml配置文件，进行hexo deploy部署</h3><img src="/2018/04/27/firstblog/github5.png">
-</li>
-</ul>
-</li>
-</ul>
-<img src="/2018/04/27/firstblog/github6.png">
-<h3 id="接下来，你要安装一个扩展"><a href="#接下来，你要安装一个扩展" class="headerlink" title="接下来，你要安装一个扩展"></a>接下来，你要安装一个扩展</h3><h3 id="在Git-Bash-窗口下执行命令"><a href="#在Git-Bash-窗口下执行命令" class="headerlink" title="在Git Bash 窗口下执行命令:"></a>在Git Bash 窗口下执行命令:</h3><h3 id="npm-install-hexo-deployer-git-save"><a href="#npm-install-hexo-deployer-git-save" class="headerlink" title="npm install hexo-deployer-git --save"></a><code>npm install hexo-deployer-git --save</code></h3><img src="/2018/04/27/firstblog/github7.png">
-<h3 id="执行hexo-d-部署网站，成功后你会在GitHub上看到public文件夹的内容"><a href="#执行hexo-d-部署网站，成功后你会在GitHub上看到public文件夹的内容" class="headerlink" title="执行hexo d,部署网站，成功后你会在GitHub上看到public文件夹的内容"></a>执行hexo d,部署网站，成功后你会在GitHub上看到public文件夹的内容</h3><img src="/2018/04/27/firstblog/github8.png">
-<ul>
-<li><h3 id="最后，在浏览器输入-你的Repositroy的名字，就可以看到你的blog已经搭建成功了！"><a href="#最后，在浏览器输入-你的Repositroy的名字，就可以看到你的blog已经搭建成功了！" class="headerlink" title="最后，在浏览器输入 你的Repositroy的名字，就可以看到你的blog已经搭建成功了！"></a>最后，在浏览器输入 你的Repositroy的名字，就可以看到你的blog已经搭建成功了！</h3></li>
-</ul>
-<hr>
-<h3 id="PS-搭建过程遇到问题，就去Google，毕竟自己动手丰衣足食。。。-本人小白一个，不过遇到问题也可以在文末留言探讨，互相学习嘛"><a href="#PS-搭建过程遇到问题，就去Google，毕竟自己动手丰衣足食。。。-本人小白一个，不过遇到问题也可以在文末留言探讨，互相学习嘛" class="headerlink" title="PS:  搭建过程遇到问题，就去Google，毕竟自己动手丰衣足食。。。(本人小白一个，不过遇到问题也可以在文末留言探讨，互相学习嘛~)"></a>PS:  搭建过程遇到问题，就去Google，毕竟自己动手丰衣足食。。。(本人小白一个，不过遇到问题也可以在文末留言探讨，互相学习嘛~)</h3>
+<p><strong>普通组件映射</strong><br>Phone.java<br><img src="/2018/05/15/hibernate-5-15-1/组件1.jpg"></p>
+<p>User.java<br><img src="/2018/05/15/hibernate-5-15-1/组件2.jpg"></p>
+<p>User.hbm.xml<br><img src="/2018/05/15/hibernate-5-15-1/组件3.jpg"></p>
+<p>TestDemo.java<br><img src="/2018/05/15/hibernate-5-15-1/组件6.jpg"></p>
+<p>输出结果<br><img src="/2018/05/15/hibernate-5-15-1/组件4.jpg"></p>
+<img src="/2018/05/15/hibernate-5-15-1/组件5.jpg">
+<p><strong>动态组件映射</strong></p>
+<p>User.java<br><img src="/2018/05/15/hibernate-5-15-1/组件7.jpg"></p>
+<p>User.hbm.xml<br><img src="/2018/05/15/hibernate-5-15-1/组件8.jpg"></p>
+<p>TestDemo.java<br><img src="/2018/05/15/hibernate-5-15-1/组件9.jpg"></p>
+<p>输出结果<br><img src="/2018/05/15/hibernate-5-15-1/组件10.jpg"></p>
+<img src="/2018/05/15/hibernate-5-15-1/组件11.jpg">
+<p>在文档中有说到动态组件映射的作用，如下：<br>这种映射类型的优点在于通过修改映射文件，就可以具有在部署时检测真实属性的能力.(利用一个DOM解析器， 是有可能在运行时刻操作映射文件的。)</p>
+<p>但是我并不明白是什么意思？又是一个问题啊。。。</p>
+
       
 
       
@@ -283,7 +264,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">学与问</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
         		</li>
       		
 		</ul>
@@ -339,7 +320,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/04/27/firstblog/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/05/15/hibernate-5-15-1/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -353,15 +334,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/05/02/scriptlanguage/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          编译型语言，解释型语言，脚本语言
-        
-      </div>
-    </a>
   
+    <a href="/2018/05/15/hibernate-5-15/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">初学Hibernate-- 一级缓存</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -378,19 +355,6 @@
             </div>
         </div>
         
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-安装Git"><span class="toc-number">2.</span> <span class="toc-text">1.安装Git</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#在Git的官网下载Git，不多说直接上图"><span class="toc-number">2.1.</span> <span class="toc-text">在Git的官网下载Git，不多说直接上图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#官网会根据你系统版本为你会自动下载"><span class="toc-number">2.2.</span> <span class="toc-text">官网会根据你系统版本为你会自动下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网速慢的话移步—-gt-国内镜源"><span class="toc-number">2.3.</span> <span class="toc-text">网速慢的话移步—&gt;国内镜源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装完后，在桌面右击找到“Git-Bash-Here”，出现命令行窗口说明Git安装成功！"><span class="toc-number">2.4.</span> <span class="toc-text">安装完后，在桌面右击找到“Git Bash Here”，出现命令行窗口说明Git安装成功！</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-安装node-js-根据你的系统版本选择安装包下载"><span class="toc-number">3.</span> <span class="toc-text">2.安装node.js 根据你的系统版本选择安装包下载</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#下载完后按套路安装，遇到安装路径的选择，可以自定义也可以默认，其他一路next"><span class="toc-number">3.1.</span> <span class="toc-text">下载完后按套路安装，遇到安装路径的选择，可以自定义也可以默认，其他一路next</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装完后需要配置环境变量，一般情况会自动在Path中添加node-js的安装路径，如果没有，就手动添加吧，毕竟自己动手丰衣足食。"><span class="toc-number">3.2.</span> <span class="toc-text">安装完后需要配置环境变量，一般情况会自动在Path中添加node.js的安装路径，如果没有，就手动添加吧，毕竟自己动手丰衣足食。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#win-R-输入cmd打开命令行窗口，输入node-v查看node-js-版本，npm-v查看npm版本，一般新的node-js会自带npm"><span class="toc-number">3.3.</span> <span class="toc-text">win+R 输入cmd打开命令行窗口，输入node -v查看node.js 版本，npm -v查看npm版本，一般新的node.js会自带npm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更多详情参考https-blog-csdn-net-qq-26562641-article-details-72235585"><span class="toc-number">3.4.</span> <span class="toc-text">更多详情参考https://blog.csdn.net/qq_26562641/article/details/72235585</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-安装Hexo"><span class="toc-number">4.</span> <span class="toc-text">3.安装Hexo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#建立一个用于存放Hexo的文件夹，右击打开Git-Bash，执行以下命令"><span class="toc-number">4.1.</span> <span class="toc-text">建立一个用于存放Hexo的文件夹，右击打开Git Bash，执行以下命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-npm-install-g-hexo-cli"><span class="toc-number">4.2.</span> <span class="toc-text">1.npm install -g hexo-cli</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-hexo-init-blog-新建网站blog，-blog你可以自定义命名"><span class="toc-number">4.3.</span> <span class="toc-text">2.hexo init blog , 新建网站blog， blog你可以自定义命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#执行到这一步Hexo安装已经完成了，至于基本的命令操作的意思就自己去看hexo官方文档"><span class="toc-number">4.4.</span> <span class="toc-text">执行到这一步Hexo安装已经完成了，至于基本的命令操作的意思就自己去看hexo官方文档</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#这里简单说说在本地预览blog"><span class="toc-number">4.5.</span> <span class="toc-text">这里简单说说在本地预览blog</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#执行命令hexo-g"><span class="toc-number">4.6.</span> <span class="toc-text">执行命令hexo g</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#执行命令-hexo-s"><span class="toc-number">4.7.</span> <span class="toc-text">执行命令 hexo s</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在浏览器输入localhost-4000-预览"><span class="toc-number">4.8.</span> <span class="toc-text">在浏览器输入localhost:4000,预览</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#重点来了，-敲黑板！！！"><span class="toc-number"></span> <span class="toc-text">重点来了，(敲黑板！！！)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-把网站部署到GitHub上"><span class="toc-number">1.</span> <span class="toc-text">4.把网站部署到GitHub上</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#注册GitHub账号"><span class="toc-number">1.1.</span> <span class="toc-text">注册GitHub账号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#建立仓库"><span class="toc-number">1.2.</span> <span class="toc-text">建立仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#repository名字一定要是-用户名-github-io"><span class="toc-number">1.3.</span> <span class="toc-text">repository名字一定要是 用户名.github.io</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置repository关联的branch"><span class="toc-number">1.4.</span> <span class="toc-text">配置repository关联的branch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置-SSH-KEY连接GitHub"><span class="toc-number">1.5.</span> <span class="toc-text">配置 SSH KEY连接GitHub</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网上有很多详细的步骤，就不多说了，参考百度经验：windows下配置SSH-KEY"><span class="toc-number">1.6.</span> <span class="toc-text">网上有很多详细的步骤，就不多说了，参考百度经验：windows下配置SSH KEY</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在网站的根目录下找到-config-yml配置文件，进行hexo-deploy部署"><span class="toc-number">1.7.</span> <span class="toc-text">在网站的根目录下找到_config.yml配置文件，进行hexo deploy部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#接下来，你要安装一个扩展"><span class="toc-number">1.8.</span> <span class="toc-text">接下来，你要安装一个扩展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在Git-Bash-窗口下执行命令"><span class="toc-number">1.9.</span> <span class="toc-text">在Git Bash 窗口下执行命令:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#npm-install-hexo-deployer-git-save"><span class="toc-number">1.10.</span> <span class="toc-text">npm install hexo-deployer-git --save</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#执行hexo-d-部署网站，成功后你会在GitHub上看到public文件夹的内容"><span class="toc-number">1.11.</span> <span class="toc-text">执行hexo d,部署网站，成功后你会在GitHub上看到public文件夹的内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最后，在浏览器输入-你的Repositroy的名字，就可以看到你的blog已经搭建成功了！"><span class="toc-number">1.12.</span> <span class="toc-text">最后，在浏览器输入 你的Repositroy的名字，就可以看到你的blog已经搭建成功了！</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PS-搭建过程遇到问题，就去Google，毕竟自己动手丰衣足食。。。-本人小白一个，不过遇到问题也可以在文末留言探讨，互相学习嘛"><span class="toc-number">1.13.</span> <span class="toc-text">PS:  搭建过程遇到问题，就去Google，毕竟自己动手丰衣足食。。。(本人小白一个，不过遇到问题也可以在文末留言探讨，互相学习嘛~)</span></a></li></ol></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
         
     </div>
 </aside>
