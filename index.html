@@ -168,6 +168,88 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-post-6-3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/03/post-6-3/">锚链接的应用</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/03/post-6-3/" class="archive-article-date">
+  	<time datetime="2018-06-03T14:16:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>最近在做作业，没怎么更新博客，今天在作业中遇到了一个以前没学过的锚链接的应用,对前端还不熟悉，记下笔记.</p>
+</blockquote>
+<blockquote>
+<p>思路：众所周知，锚链接用于页面内的定位，因此，我们可以设定好父div的大小，然后设定子div的大小大于父div，利用溢出隐藏，使得父div只能显示一个子div，然后在子div中设定锚链接进行定位，就可以实现不同子div定位显示在父div</p>
+</blockquote>
+<p>html文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;head&quot;&gt;</span><br><span class="line"></span><br><span class="line">		&lt;div class=&quot;head-user&quot;&gt;</span><br><span class="line">			&lt;h1&gt;用户信息&lt;/h1&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">		&lt;div class=&quot;head-buy&quot;  &gt;</span><br><span class="line">			&lt;a href=&quot;#buy&quot;&gt;欲购书籍&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">		&lt;div class=&quot;head-sell&quot; &gt;</span><br><span class="line">			&lt;a href=&quot;#sell&quot; &gt;出售书籍&lt;/a&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">		&lt;div class=&quot;head-xiugai&quot;&gt;</span><br><span class="line">			&lt;a href=&quot;#gai&quot;&gt;修改资料&lt;/a&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br><span class="line"> &lt;div class=&quot;right&quot;&gt;</span><br><span class="line"></span><br><span class="line">		&lt;div class=&quot;right-context&quot;&gt;</span><br><span class="line"></span><br><span class="line">			&lt;div class=&quot;buybook&quot; &gt;</span><br><span class="line">				&lt;a name=&quot;buy&quot;&gt;&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">			&lt;/div&gt;</span><br><span class="line">			&lt;div class=&quot;sellbook&quot; &gt;</span><br><span class="line">				&lt;a name=&quot;sell&quot;&gt;&lt;/a&gt;</span><br><span class="line">			&lt;/div&gt;</span><br><span class="line">			&lt;div class=&quot;xiugai&quot;&gt;</span><br><span class="line">				&lt;a name=&quot;gai&quot;&gt;&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">				&lt;h2&gt;请输入新的资料&lt;/h2&gt;</span><br><span class="line">				&lt;form  id=&quot;in-put&quot; action=&quot;userInfo&quot; method=&quot;post&quot;&gt;</span><br><span class="line">				   &lt;p&gt;	用户名：&lt;input type=&quot;text&quot; name=&quot;name&quot; /&gt;&lt;/p&gt;</span><br><span class="line">				   &lt;p&gt;	密码：&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;input type=&quot;text&quot; name=&quot;password&quot; /&gt; &lt;/p&gt;</span><br><span class="line">				   &lt;p&gt;	手机：&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;input type=&quot;text&quot; name=&quot;phone&quot; /&gt; &lt;/p&gt;</span><br><span class="line">				   &lt;p&gt;  qq: &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;input type=&quot;text&quot; name=&quot;contact&quot; /&gt;&lt;/p&gt;</span><br><span class="line">					&lt;p&gt;&lt;input type=&quot;submit&quot; value=&quot;提交修改&quot;/&gt;&lt;/p&gt;</span><br><span class="line">				&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">			&lt;/div&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+        
+          <a class="article-more-a" href="/2018/06/03/post-6-3/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">html</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/03/post-6-3/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-struts2-5-28" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -891,84 +973,6 @@
 
 
   
-    <article id="post-hibernate-5-15" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/15/hibernate-5-15/">初学Hibernate-- 一级缓存</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/15/hibernate-5-15/" class="archive-article-date">
-  	<time datetime="2018-05-15T02:26:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一级缓存（session级缓存）"><a href="#一级缓存（session级缓存）" class="headerlink" title="一级缓存（session级缓存）"></a>一级缓存（session级缓存）</h3><p><strong>原理</strong>：Session 中定义一系列集合来存储数据，构成Session的缓存，只要Session没有关闭，数据就会一直存在，除非执行如clear(),evict(),flush()操作。当执行如save(),get(),update()等操作时，会把持久化对象保存在关联的session中，当下一次在执行这些操作时，先在session的缓存中查询获取，没查找到再到数据库中去查询。不关闭session，缓存并不会清空。不提交不会发送SQL语句。</p>
-<p><strong>作用</strong>：减少数据库的访问次数，缓存会把改变的SQL语句合并，提高效率。</p>
-<p>一级缓存的真正缓存地点<br><img src="/2018/05/15/hibernate-5-15/一级0.jpg"><br><img src="/2018/05/15/hibernate-5-15/一级1.jpg"><br><img src="/2018/05/15/hibernate-5-15/一级2.jpg"></p>
-        
-          <a class="article-more-a" href="/2018/05/15/hibernate-5-15/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/15/hibernate-5-15/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1066,11 +1070,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+                <a href="javascript:void(0)" class="js-tag color5">html</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机语言</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1079,10 +1091,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Struts2</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机语言</a>
               </li>
             
             <div class="clearfix"></div>
