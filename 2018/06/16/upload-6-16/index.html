@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018 | Yuji_19</title>
+  <title>form表单上传文件 | Yuji_19</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前端，HTML，css，js，java，Hibernate，web，struts2">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Yuji_19">
-<meta property="og:url" content="http://yoursite.com/archives/2018/page/2/index.html">
+  <meta name="description" content="利用form表单的、DiskFileItemFactory、ServletFileUpload和FileItem实现上传文件.使用Commons-fileupload组件实现文件上传，需要导入该组件相应的支撑jar包：Commons-fileupload和commons-io  Jsp页面1234567891011121314151617181920212223242526272829&amp;lt;!">
+<meta name="keywords" content="java,技术,html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="form表单上传文件">
+<meta property="og:url" content="http://yoursite.com/2018/06/16/upload-6-16/index.html">
 <meta property="og:site_name" content="Yuji_19">
-<meta property="og:description" content="前端，HTML，css，js，java，Hibernate，web，struts2">
+<meta property="og:description" content="利用form表单的、DiskFileItemFactory、ServletFileUpload和FileItem实现上传文件.使用Commons-fileupload组件实现文件上传，需要导入该组件相应的支撑jar包：Commons-fileupload和commons-io  Jsp页面1234567891011121314151617181920212223242526272829&amp;lt;!">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-06-16T08:48:34.462Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yuji_19">
-<meta name="twitter:description" content="前端，HTML，css，js，java，Hibernate，web，struts2">
+<meta name="twitter:title" content="form表单上传文件">
+<meta name="twitter:description" content="利用form表单的、DiskFileItemFactory、ServletFileUpload和FileItem实现上传文件.使用Commons-fileupload组件实现文件上传，需要导入该组件相应的支撑jar包：Commons-fileupload和commons-io  Jsp页面1234567891011121314151617181920212223242526272829&amp;lt;!">
   
     <link rel="alternative" href="/atom.xml" title="Yuji_19" type="application/atom+xml">
   
@@ -166,340 +168,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-upload-6-16" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      form表单上传文件
+    </h1>
+  
+
+        
+        <a href="/2018/06/16/upload-6-16/" class="archive-article-date">
+  	<time datetime="2018-06-16T07:50:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-16</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>利用form表单的<input type="file">、DiskFileItemFactory、ServletFileUpload和FileItem实现上传文件.使用Commons-fileupload组件实现文件上传，需要导入该组件相应的支撑jar包：Commons-fileupload和commons-io</p>
+</blockquote>
+<p>Jsp页面<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--multipart/form-data是将文件以二进制的形式上传，这样可以实现多种类型的文件上传 --&gt;</span><br><span class="line">&lt;form  id=&quot;in-put&quot; action=&quot;UpdateInfo&quot; enctype=&quot;multipart/form-data&quot; method=&quot;post&quot;&gt;</span><br><span class="line">					    &lt;table class=&quot;table_in&quot; &gt;</span><br><span class="line">					    &lt;tr&gt;</span><br><span class="line">					    &lt;td&gt;用户名：&lt;/td&gt;</span><br><span class="line">					    &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;name&quot; value=&quot;$&#123;sessionScope.user.getName() &#125;&quot; /&gt;&lt;/td&gt;</span><br><span class="line">					    &lt;/tr&gt;</span><br><span class="line">					    &lt;tr&gt;</span><br><span class="line">					    &lt;td&gt;密码：&lt;/td&gt;</span><br><span class="line">					    &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;password&quot; value=&quot;$&#123;sessionScope.user.getPassword() &#125;&quot; /&gt;&lt;/td&gt;</span><br><span class="line">					    &lt;/tr&gt;</span><br><span class="line">					    &lt;tr&gt;</span><br><span class="line">					    &lt;td&gt;手机：&lt;/td&gt;</span><br><span class="line">					    &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;phone&quot; value=&quot;$&#123;sessionScope.user.getPhone() &#125;&quot; /&gt;&lt;/td&gt;</span><br><span class="line">					    &lt;/tr&gt;</span><br><span class="line">					    &lt;tr&gt;</span><br><span class="line">					    &lt;td&gt;qq:&lt;/td&gt;</span><br><span class="line">					    &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;contact&quot; value=&quot;$&#123;sessionScope.user.getContact() &#125;&quot; /&gt;&lt;/td&gt;</span><br><span class="line">					    &lt;/tr&gt;</span><br><span class="line">					    &lt;tr&gt;</span><br><span class="line">					    &lt;td&gt;头像上传:&lt;/td&gt;</span><br><span class="line">					    &lt;td&gt;&lt;input type=&quot;file&quot; name=&quot;touxiang&quot; /&gt;&lt;/td&gt;</span><br><span class="line">					    &lt;/tr&gt;</span><br><span class="line">					    &lt;tr&gt;</span><br><span class="line">					    &lt;td&gt;&lt;input type=&quot;submit&quot; value=&quot;提交修改&quot;/&gt;&lt;/td&gt;</span><br><span class="line">					    &lt;/tr&gt;</span><br><span class="line">					    &lt;/table&gt;</span><br><span class="line">					&lt;/form&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>后台servlet处理请求<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">//map存放表单中非文件的内容</span><br><span class="line">	Map&lt;String, String&gt; map = new HashMap();</span><br><span class="line">	DiskFileItemFactory dif = new DiskFileItemFactory();</span><br><span class="line">	// 设置缓冲区大小</span><br><span class="line">	dif.setSizeThreshold(10*1024*1024);</span><br><span class="line">	//ServletFileUpload 负责处理上传的文件数据，并将表单中每个输入项封装成一个FileItem 对象中</span><br><span class="line">	ServletFileUpload sUpload = new ServletFileUpload(dif);</span><br><span class="line">	//设置文件最大尺寸</span><br><span class="line">	sUpload.setSizeMax(5*1024*1024);</span><br><span class="line">	sUpload.setHeaderEncoding(&quot;utf-8&quot;);</span><br><span class="line"></span><br><span class="line">	//sUpload.parseRequest(request),解析request对象，并把表单中的每个输入项包装成一个FileItem对象，返回一个保存所有FileItem对象的List</span><br><span class="line">	List&lt;FileItem&gt; items = sUpload.parseRequest(request);</span><br><span class="line">	if (items != null) &#123;</span><br><span class="line">		for(FileItem item: items)</span><br><span class="line">		&#123;</span><br><span class="line">			/*</span><br><span class="line">			 isFormField方法用于判断FileItem类对象封装的数据是一个普通文本表单字段，</span><br><span class="line">			 还是一个文件表单字段，如果是普通表单字段则返回true，否则返回false</span><br><span class="line">			*/</span><br><span class="line">			//非文件，就是普通的输入项</span><br><span class="line">			if (item.isFormField()) &#123;</span><br><span class="line">				//getFieldName()用于返回表单标签name属性的值</span><br><span class="line">				String key = item.getFieldName();</span><br><span class="line">				/*getString(&quot;utf-8&quot;)用于将FileItem对象中保存的数据流内容以一个字符串返回,</span><br><span class="line">				此处使用参数指定的字符集编码将主体内容转换成字符串*/</span><br><span class="line">				String value = item.getString(&quot;utf-8&quot;);</span><br><span class="line">				map.put(key, value);</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line">			//上传的文件</span><br><span class="line">			else</span><br><span class="line">			&#123;</span><br><span class="line">				//上传到服务器的路径</span><br><span class="line">				String savepath = this.getServletContext().getRealPath(&quot;//upload&quot;);</span><br><span class="line">				System.out.println(savepath);</span><br><span class="line">				//获取文件类型</span><br><span class="line">				String filetype = item.getName().substring(item.getName().lastIndexOf(&quot;.&quot;) + 1).toLowerCase();</span><br><span class="line">				//重新构建文件名</span><br><span class="line">				SimpleDateFormat dateFormat = new SimpleDateFormat(&quot;yyyyMMddhhmmss&quot;);//设置时间字符串的格式</span><br><span class="line">				String filename = dateFormat.format((new Date()).getTime())+&quot;.&quot;+filetype;</span><br><span class="line">				//文件在服务器的路径</span><br><span class="line">				String filepath = savepath+File.separator+filename;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">				map.put(&quot;picture&quot;, filename);</span><br><span class="line">				item.write(new File(filepath));</span><br><span class="line">				item.delete();//删除临时文件</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/23/hibernate-5-23/" class="archive-article-date">
-  	<time datetime="2018-05-23T07:43:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/23/hibernate-5-23/">初学Hibernate -- QBC</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/22/hibernate-5-22/" class="archive-article-date">
-  	<time datetime="2018-05-22T00:13:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/22/hibernate-5-22/">初学Hibernate --- hql（二）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/21/hibernate-5-21/" class="archive-article-date">
-  	<time datetime="2018-05-21T11:07:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/21/hibernate-5-21/">初学Hibernate-- hql(一)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/19/hibernate-5-19/" class="archive-article-date">
-  	<time datetime="2018-05-19T06:44:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/19/hibernate-5-19/">初学hibernate-- 关联关系</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/15/hibernate-5-15-1/" class="archive-article-date">
-  	<time datetime="2018-05-15T08:33:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/15/hibernate-5-15-1/">初学Hibernate-- 映射配置:集合、组件</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/15/hibernate-5-15/" class="archive-article-date">
-  	<time datetime="2018-05-15T02:26:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/15/hibernate-5-15/">初学Hibernate-- 一级缓存</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/14/hibernate-5-14/" class="archive-article-date">
-  	<time datetime="2018-05-14T14:07:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/14/hibernate-5-14/">初学Hibernate--property部分映射</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/12/hibernate-5-12/" class="archive-article-date">
-  	<time datetime="2018-05-12T08:07:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/12/hibernate-5-12/">初学Hibernate--不同版本的Hibernate获取SessionFactory</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/11/hibernate-5-11/" class="archive-article-date">
-  	<time datetime="2018-05-11T12:05:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/11/hibernate-5-11/">初学Hibernate--环境配置与用法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -509,70 +231,136 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/04/JS-object/" class="archive-article-date">
-  	<time datetime="2018-05-04T06:46:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/04/JS-object/">头脑风暴-JavaScript中的对象原型</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">html</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/06/16/upload-6-16/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/06/14/suibi-6-14/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">这九天的事</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+  <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNjA5My8xMjYyOA==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+  
+  
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2018/">&laquo; Prev</a><a class="page-number" href="/archives/2018/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2018/page/3/">3</a><a class="extend next" rel="next" href="/archives/2018/page/3/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -596,8 +384,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
