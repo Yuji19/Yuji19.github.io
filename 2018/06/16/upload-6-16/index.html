@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>form表单上传文件 | Yuji_19</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="利用form表单的、DiskFileItemFactory、ServletFileUpload和FileItem实现上传文件.使用Commons-fileupload组件实现文件上传，需要导入该组件相应的支撑jar包：Commons-fileupload和commons-io  Jsp页面1234567891011121314151617181920212223242526272829&amp;lt;!">
-<meta name="keywords" content="java,技术,html">
+  <meta name="description" content="利用form表单的input type=”file”、DiskFileItemFactory、ServletFileUpload和FileItem实现上传文件.使用Commons-fileupload组件实现文件上传，需要导入该组件相应的支撑jar包：Commons-fileupload和commons-io  Jsp页面1234567891011121314151617181920212223">
+<meta name="keywords" content="技术,java,html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="form表单上传文件">
 <meta property="og:url" content="http://yoursite.com/2018/06/16/upload-6-16/index.html">
 <meta property="og:site_name" content="Yuji_19">
-<meta property="og:description" content="利用form表单的、DiskFileItemFactory、ServletFileUpload和FileItem实现上传文件.使用Commons-fileupload组件实现文件上传，需要导入该组件相应的支撑jar包：Commons-fileupload和commons-io  Jsp页面1234567891011121314151617181920212223242526272829&amp;lt;!">
+<meta property="og:description" content="利用form表单的input type=”file”、DiskFileItemFactory、ServletFileUpload和FileItem实现上传文件.使用Commons-fileupload组件实现文件上传，需要导入该组件相应的支撑jar包：Commons-fileupload和commons-io  Jsp页面1234567891011121314151617181920212223">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-16T08:48:34.462Z">
+<meta property="og:updated_time" content="2018-06-16T09:02:22.948Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="form表单上传文件">
-<meta name="twitter:description" content="利用form表单的、DiskFileItemFactory、ServletFileUpload和FileItem实现上传文件.使用Commons-fileupload组件实现文件上传，需要导入该组件相应的支撑jar包：Commons-fileupload和commons-io  Jsp页面1234567891011121314151617181920212223242526272829&amp;lt;!">
+<meta name="twitter:description" content="利用form表单的input type=”file”、DiskFileItemFactory、ServletFileUpload和FileItem实现上传文件.使用Commons-fileupload组件实现文件上传，需要导入该组件相应的支撑jar包：Commons-fileupload和commons-io  Jsp页面1234567891011121314151617181920212223">
   
     <link rel="alternative" href="/atom.xml" title="Yuji_19" type="application/atom+xml">
   
@@ -189,9 +189,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>利用form表单的<input type="file">、DiskFileItemFactory、ServletFileUpload和FileItem实现上传文件.使用Commons-fileupload组件实现文件上传，需要导入该组件相应的支撑jar包：Commons-fileupload和commons-io</p>
+<p>利用form表单的input type=”file”、DiskFileItemFactory、ServletFileUpload和FileItem实现上传文件.使用Commons-fileupload组件实现文件上传，需要导入该组件相应的支撑jar包：Commons-fileupload和commons-io</p>
 </blockquote>
-<p>Jsp页面<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--multipart/form-data是将文件以二进制的形式上传，这样可以实现多种类型的文件上传 --&gt;</span><br><span class="line">&lt;form  id=&quot;in-put&quot; action=&quot;UpdateInfo&quot; enctype=&quot;multipart/form-data&quot; method=&quot;post&quot;&gt;</span><br><span class="line">					    &lt;table class=&quot;table_in&quot; &gt;</span><br><span class="line">					    &lt;tr&gt;</span><br><span class="line">					    &lt;td&gt;用户名：&lt;/td&gt;</span><br><span class="line">					    &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;name&quot; value=&quot;$&#123;sessionScope.user.getName() &#125;&quot; /&gt;&lt;/td&gt;</span><br><span class="line">					    &lt;/tr&gt;</span><br><span class="line">					    &lt;tr&gt;</span><br><span class="line">					    &lt;td&gt;密码：&lt;/td&gt;</span><br><span class="line">					    &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;password&quot; value=&quot;$&#123;sessionScope.user.getPassword() &#125;&quot; /&gt;&lt;/td&gt;</span><br><span class="line">					    &lt;/tr&gt;</span><br><span class="line">					    &lt;tr&gt;</span><br><span class="line">					    &lt;td&gt;手机：&lt;/td&gt;</span><br><span class="line">					    &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;phone&quot; value=&quot;$&#123;sessionScope.user.getPhone() &#125;&quot; /&gt;&lt;/td&gt;</span><br><span class="line">					    &lt;/tr&gt;</span><br><span class="line">					    &lt;tr&gt;</span><br><span class="line">					    &lt;td&gt;qq:&lt;/td&gt;</span><br><span class="line">					    &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;contact&quot; value=&quot;$&#123;sessionScope.user.getContact() &#125;&quot; /&gt;&lt;/td&gt;</span><br><span class="line">					    &lt;/tr&gt;</span><br><span class="line">					    &lt;tr&gt;</span><br><span class="line">					    &lt;td&gt;头像上传:&lt;/td&gt;</span><br><span class="line">					    &lt;td&gt;&lt;input type=&quot;file&quot; name=&quot;touxiang&quot; /&gt;&lt;/td&gt;</span><br><span class="line">					    &lt;/tr&gt;</span><br><span class="line">					    &lt;tr&gt;</span><br><span class="line">					    &lt;td&gt;&lt;input type=&quot;submit&quot; value=&quot;提交修改&quot;/&gt;&lt;/td&gt;</span><br><span class="line">					    &lt;/tr&gt;</span><br><span class="line">					    &lt;/table&gt;</span><br><span class="line">					&lt;/form&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>Jsp页面<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--multipart/form-data是将文件以二进制的形式上传，这样可以实现多种类型的文件上传 --&gt;</span><br><span class="line">&lt;form  id=&quot;in-put&quot; action=&quot;UpdateInfo&quot; enctype=&quot;multipart/form-data&quot; method=&quot;post&quot;&gt;</span><br><span class="line">&lt;table class=&quot;table_in&quot; &gt;</span><br><span class="line">&lt;tr&gt;</span><br><span class="line">&lt;td&gt;用户名：&lt;/td&gt;</span><br><span class="line">&lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;name&quot; value=&quot;$&#123;sessionScope.user.getName() &#125;&quot; /&gt;&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line">&lt;tr&gt;</span><br><span class="line">&lt;td&gt;密码：&lt;/td&gt;</span><br><span class="line">&lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;password&quot; value=&quot;$&#123;sessionScope.user.getPassword() &#125;&quot; /&gt;&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line">&lt;tr&gt;</span><br><span class="line">&lt;td&gt;手机：&lt;/td&gt;</span><br><span class="line">&lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;phone&quot; value=&quot;$&#123;sessionScope.user.getPhone() &#125;&quot; /&gt;&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line">&lt;tr&gt;</span><br><span class="line">&lt;td&gt;qq:&lt;/td&gt;</span><br><span class="line">&lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;contact&quot; value=&quot;$&#123;sessionScope.user.getContact() &#125;&quot; /&gt;&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line">&lt;tr&gt;</span><br><span class="line">&lt;td&gt;头像上传:&lt;/td&gt;</span><br><span class="line">&lt;td&gt;&lt;input type=&quot;file&quot; name=&quot;touxiang&quot; /&gt;&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line">&lt;tr&gt;</span><br><span class="line">&lt;td&gt;&lt;input type=&quot;submit&quot; value=&quot;提交修改&quot;/&gt;&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line">&lt;/table&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure><br><a id="more"></a></p>
 <p>后台servlet处理请求<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">//map存放表单中非文件的内容</span><br><span class="line">	Map&lt;String, String&gt; map = new HashMap();</span><br><span class="line">	DiskFileItemFactory dif = new DiskFileItemFactory();</span><br><span class="line">	// 设置缓冲区大小</span><br><span class="line">	dif.setSizeThreshold(10*1024*1024);</span><br><span class="line">	//ServletFileUpload 负责处理上传的文件数据，并将表单中每个输入项封装成一个FileItem 对象中</span><br><span class="line">	ServletFileUpload sUpload = new ServletFileUpload(dif);</span><br><span class="line">	//设置文件最大尺寸</span><br><span class="line">	sUpload.setSizeMax(5*1024*1024);</span><br><span class="line">	sUpload.setHeaderEncoding(&quot;utf-8&quot;);</span><br><span class="line"></span><br><span class="line">	//sUpload.parseRequest(request),解析request对象，并把表单中的每个输入项包装成一个FileItem对象，返回一个保存所有FileItem对象的List</span><br><span class="line">	List&lt;FileItem&gt; items = sUpload.parseRequest(request);</span><br><span class="line">	if (items != null) &#123;</span><br><span class="line">		for(FileItem item: items)</span><br><span class="line">		&#123;</span><br><span class="line">			/*</span><br><span class="line">			 isFormField方法用于判断FileItem类对象封装的数据是一个普通文本表单字段，</span><br><span class="line">			 还是一个文件表单字段，如果是普通表单字段则返回true，否则返回false</span><br><span class="line">			*/</span><br><span class="line">			//非文件，就是普通的输入项</span><br><span class="line">			if (item.isFormField()) &#123;</span><br><span class="line">				//getFieldName()用于返回表单标签name属性的值</span><br><span class="line">				String key = item.getFieldName();</span><br><span class="line">				/*getString(&quot;utf-8&quot;)用于将FileItem对象中保存的数据流内容以一个字符串返回,</span><br><span class="line">				此处使用参数指定的字符集编码将主体内容转换成字符串*/</span><br><span class="line">				String value = item.getString(&quot;utf-8&quot;);</span><br><span class="line">				map.put(key, value);</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line">			//上传的文件</span><br><span class="line">			else</span><br><span class="line">			&#123;</span><br><span class="line">				//上传到服务器的路径</span><br><span class="line">				String savepath = this.getServletContext().getRealPath(&quot;//upload&quot;);</span><br><span class="line">				System.out.println(savepath);</span><br><span class="line">				//获取文件类型</span><br><span class="line">				String filetype = item.getName().substring(item.getName().lastIndexOf(&quot;.&quot;) + 1).toLowerCase();</span><br><span class="line">				//重新构建文件名</span><br><span class="line">				SimpleDateFormat dateFormat = new SimpleDateFormat(&quot;yyyyMMddhhmmss&quot;);//设置时间字符串的格式</span><br><span class="line">				String filename = dateFormat.format((new Date()).getTime())+&quot;.&quot;+filetype;</span><br><span class="line">				//文件在服务器的路径</span><br><span class="line">				String filepath = savepath+File.separator+filename;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">				map.put(&quot;picture&quot;, filename);</span><br><span class="line">				item.write(new File(filepath));</span><br><span class="line">				item.delete();//删除临时文件</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
 
       
@@ -227,11 +227,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -304,6 +304,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/06/22/struts2-6-22/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          初学Struts2 -- OGNL
+        
+      </div>
+    </a>
   
   
     <a href="/2018/06/14/suibi-6-14/" id="article-nav-older" class="article-nav-link-wrap">
@@ -446,15 +455,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -466,15 +475,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机语言</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Web</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Struts2</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机语言</a>
               </li>
              
               <li class="article-tag-list-item">
