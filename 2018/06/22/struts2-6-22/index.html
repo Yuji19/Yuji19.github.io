@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>初学Struts2 -- OGNL | Yuji_19</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="OGNL是什么？OGNL是Object-Graph Navigation Language的缩写，它是一种功能强大的表达式语言，通过它简单一致的表达式语法，可以存取对象的任意属性，调用对象的方法，遍历整个对象的结构图，实现字段类型转化等功能。它使用相同的表达式去存取对象的属性。这样可以更好的取得数据。 为什么要使用OGNL?在MVC设计模式中，视图负责显示模型和其他对象，为了在JSP中访问这些对象">
+  <meta name="description" content="OGNL是什么？OGNL是Object-Graph Navigation Language的缩写，它是一种功能强大的表达式语言，通过它简单一致的表达式语法，可以存取对象的任意属性，调用对象的方法，遍历整个对象的结构图，实现字段类型转化等功能。它使用相同的表达式去存取对象的属性。这样可以更好的取得数据(百度百科)。 为什么要使用OGNL?在MVC设计模式中，视图负责显示模型和其他对象，为了在JSP中">
 <meta name="keywords" content="技术,Struts2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="初学Struts2 -- OGNL">
 <meta property="og:url" content="http://yoursite.com/2018/06/22/struts2-6-22/index.html">
 <meta property="og:site_name" content="Yuji_19">
-<meta property="og:description" content="OGNL是什么？OGNL是Object-Graph Navigation Language的缩写，它是一种功能强大的表达式语言，通过它简单一致的表达式语法，可以存取对象的任意属性，调用对象的方法，遍历整个对象的结构图，实现字段类型转化等功能。它使用相同的表达式去存取对象的属性。这样可以更好的取得数据。 为什么要使用OGNL?在MVC设计模式中，视图负责显示模型和其他对象，为了在JSP中访问这些对象">
+<meta property="og:description" content="OGNL是什么？OGNL是Object-Graph Navigation Language的缩写，它是一种功能强大的表达式语言，通过它简单一致的表达式语法，可以存取对象的任意属性，调用对象的方法，遍历整个对象的结构图，实现字段类型转化等功能。它使用相同的表达式去存取对象的属性。这样可以更好的取得数据(百度百科)。 为什么要使用OGNL?在MVC设计模式中，视图负责显示模型和其他对象，为了在JSP中">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2018/06/22/struts2-6-22/v1.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/06/22/struts2-6-22/v2.jpg">
@@ -23,10 +23,10 @@
 <meta property="og:image" content="http://yoursite.com/2018/06/22/struts2-6-22/v3.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/06/22/struts2-6-22/v4.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/06/22/struts2-6-22/v7.jpg">
-<meta property="og:updated_time" content="2018-06-22T11:14:42.762Z">
+<meta property="og:updated_time" content="2018-06-22T11:23:24.688Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初学Struts2 -- OGNL">
-<meta name="twitter:description" content="OGNL是什么？OGNL是Object-Graph Navigation Language的缩写，它是一种功能强大的表达式语言，通过它简单一致的表达式语法，可以存取对象的任意属性，调用对象的方法，遍历整个对象的结构图，实现字段类型转化等功能。它使用相同的表达式去存取对象的属性。这样可以更好的取得数据。 为什么要使用OGNL?在MVC设计模式中，视图负责显示模型和其他对象，为了在JSP中访问这些对象">
+<meta name="twitter:description" content="OGNL是什么？OGNL是Object-Graph Navigation Language的缩写，它是一种功能强大的表达式语言，通过它简单一致的表达式语法，可以存取对象的任意属性，调用对象的方法，遍历整个对象的结构图，实现字段类型转化等功能。它使用相同的表达式去存取对象的属性。这样可以更好的取得数据(百度百科)。 为什么要使用OGNL?在MVC设计模式中，视图负责显示模型和其他对象，为了在JSP中">
 <meta name="twitter:image" content="http://yoursite.com/2018/06/22/struts2-6-22/v1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Yuji_19" type="application/atom+xml">
@@ -196,9 +196,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="OGNL是什么？"><a href="#OGNL是什么？" class="headerlink" title="OGNL是什么？"></a>OGNL是什么？</h3><p>OGNL是Object-Graph Navigation Language的缩写，它是一种功能强大的表达式语言，通过它简单一致的表达式语法，可以存取对象的任意属性，调用对象的方法，遍历整个对象的结构图，实现字段类型转化等功能。它使用相同的表达式去存取对象的属性。这样可以更好的取得数据。</p>
+        <h3 id="OGNL是什么？"><a href="#OGNL是什么？" class="headerlink" title="OGNL是什么？"></a>OGNL是什么？</h3><p>OGNL是Object-Graph Navigation Language的缩写，它是一种功能强大的表达式语言，通过它简单一致的表达式语法，可以存取对象的任意属性，调用对象的方法，遍历整个对象的结构图，实现字段类型转化等功能。它使用相同的表达式去存取对象的属性。这样可以更好的取得数据(百度百科)。</p>
 <h3 id="为什么要使用OGNL"><a href="#为什么要使用OGNL" class="headerlink" title="为什么要使用OGNL?"></a>为什么要使用OGNL?</h3><p>在MVC设计模式中，视图负责显示模型和其他对象，为了在JSP中访问这些对象，需要使用Strust2从WebWork中继承的OGNL。</p>
 <h3 id="应用何处？"><a href="#应用何处？" class="headerlink" title="应用何处？"></a>应用何处？</h3><h4 id="值栈（ValueStack）"><a href="#值栈（ValueStack）" class="headerlink" title="值栈（ValueStack）"></a>值栈（ValueStack）</h4><p>1）值栈在哪里？<br>众所周知，在web项目中，都会存在action类（或者servlet）来处理请求，而值栈就是执行action时创建并保存在action中。<br><img src="/2018/06/22/struts2-6-22/v1.jpg"></p>
+<a id="more"></a>
 <p>2)值栈内部的逻辑<br>值栈内部由两个部分组成<br><img src="/2018/06/22/struts2-6-22/v2.jpg"></p>
 <p>I.可以从ActionContext中获取值栈<br>II.ObjectStack：实际上是CompoundRoot类型，是一个ArrayList<br><img src="/2018/06/22/struts2-6-22/v5.jpg"><br>保存与当前Action实例相关的各种对象</p>
 <p>III.Map栈（Context Map）：实际上是OgnlContext类型，是一个Map,<br><img src="/2018/06/22/struts2-6-22/v6.jpg"><br>保存以下Map：<br>parameters：包含当前请求的请求参数<br>request： 包含当前请求的所有请求属性<br>session： 包含当前会话的所有属性<br>application： 包含当前应用程序的ServletContext属性<br>attr： 按照这个顺序来检索属性：request，session，application</p>
@@ -314,6 +315,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/06/26/java复习-6-26/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          java复习
+        
+      </div>
+    </a>
   
   
     <a href="/2018/06/16/upload-6-16/" id="article-nav-older" class="article-nav-link-wrap">
@@ -456,10 +466,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
@@ -468,19 +474,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">html</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机语言</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Web</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -488,7 +486,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Web</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机语言</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">html</a>
               </li>
             
             <div class="clearfix"></div>
