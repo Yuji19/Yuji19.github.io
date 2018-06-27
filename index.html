@@ -168,6 +168,86 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-java复习-6-27" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/27/java复习-6-27/">java复习 --- IO流的基本使用</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/27/java复习-6-27/" class="archive-article-date">
+  	<time datetime="2018-06-27T04:03:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>字节流<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">import java.io.BufferedInputStream;</span><br><span class="line">import java.io.BufferedOutputStream;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line">import java.io.FileInputStream;</span><br><span class="line">import java.io.FileOutputStream;</span><br><span class="line"></span><br><span class="line">public class IOtest</span><br><span class="line">&#123;</span><br><span class="line">	public static void main(String[] arg) throws Exception</span><br><span class="line">	&#123;</span><br><span class="line">		File ft = new File(&quot;F:/图片/t1.jpeg&quot;);</span><br><span class="line">		FileInputStream fis = new FileInputStream(ft);</span><br><span class="line">		//字节流的带缓冲区的输入流并没有readline()方法</span><br><span class="line">		BufferedInputStream bis = new BufferedInputStream(fis);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		int  t;</span><br><span class="line">		//输出流</span><br><span class="line">		File file = new File(&quot;img/t1.jpg&quot;);</span><br><span class="line">		FileOutputStream fos = new FileOutputStream(file);</span><br><span class="line">		BufferedOutputStream bos = new BufferedOutputStream(fos);</span><br><span class="line">		//会读到结束符，所以会有数组溢出,当read返回是-1表示已经到的文件尾</span><br><span class="line">		//为什么read()返回的是int不是byte呢？</span><br><span class="line">		/*字节输入流可以操作任意类型的文件,比如图片音频等,</span><br><span class="line">		 * 这些文件底层都是以二进制形式的存储的,如果每次读取都返回byte,</span><br><span class="line">		 * 有可能在读到中间的时候遇到111111111；那么这11111111是byte类型的-1,</span><br><span class="line">		 * 我们的程序是遇到-1就会停止不读了,后面的数据就读不到了,</span><br><span class="line">		 * 所以在读取的时候用int类型接收,如果11111111会在其前面补上24个0凑足4个字节,</span><br><span class="line">		 * 那么byte类型的-1就变成int类型的255了这样可以保证整个数据读完,</span><br><span class="line">		 * 而结束标记的-1就是int类型</span><br><span class="line">		 */</span><br><span class="line">		while((t=bis.read()) != -1)</span><br><span class="line">		&#123;</span><br><span class="line"></span><br><span class="line">			bos.write(t);</span><br><span class="line">			System.out.println(&quot;----正在输入----&quot;);</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">		File f3 = new File(&quot;img/t1.jpg&quot;);</span><br><span class="line">		if (f3.exists()) &#123;</span><br><span class="line">			System.out.println(&quot;----输入完成----&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">		else</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println(&quot;----未能如愿输入文件----&quot;);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		bis.close();</span><br><span class="line">		bos.close();</span><br><span class="line"></span><br><span class="line">		//字节流传输字符</span><br><span class="line">		File f4 = new File(&quot;test.txt&quot;);</span><br><span class="line">		FileOutputStream fos2 = new FileOutputStream(f4);</span><br><span class="line">		BufferedOutputStream bos2 = new BufferedOutputStream(fos2);</span><br><span class="line">		//把字符串转为字节</span><br><span class="line">		String str = &quot;用&quot;;</span><br><span class="line">		byte[] s = str.getBytes();</span><br><span class="line">		//为什么输出是3呢？</span><br><span class="line">		//java中一个字符占两个字节，而字符串&quot;用&quot;包括用 和 结束符，所以有3个字节。</span><br><span class="line">		System.out.println(s.length);</span><br><span class="line">		bos2.write(s);</span><br><span class="line">		bos2.close();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+        
+          <a class="article-more-a" href="/2018/06/27/java复习-6-27/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/27/java复习-6-27/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-java复习-6-26" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -175,7 +255,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/26/java复习-6-26/">java复习</a>
+      <a class="article-title" href="/2018/06/26/java复习-6-26/">java基础复习</a>
     </h1>
   
 
@@ -917,89 +997,6 @@
 
 
   
-    <article id="post-struts2-5-27" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/27/struts2-5-27/">初学Struts2 -- Action类</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/27/struts2-5-27/" class="archive-article-date">
-  	<time datetime="2018-05-27T11:51:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>Action类：处理Struts2请求。Strust2为每一个Http请求创建一个Action类的实例，而不只是单例，所以是线程安全的。  究竟是不是像所说的这样呢？动手试试吧！</p>
-</blockquote>
-<p>input.jsp<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> &lt;body&gt;</span><br><span class="line"></span><br><span class="line">  &lt;form action=&quot;product-save.action&quot; method=&quot;post&quot;&gt;</span><br><span class="line">     ProductName: &lt;input  name=&quot;productName&quot; type=&quot;text&quot; /&gt;</span><br><span class="line">     &lt;br&gt;</span><br><span class="line">     ProductDesc: &lt;input  name=&quot;productDesc&quot; type=&quot;text&quot; /&gt;</span><br><span class="line">      &lt;br&gt;</span><br><span class="line">     ProductPrice: &lt;input  name=&quot;productPrice&quot; type=&quot;text&quot; /&gt;</span><br><span class="line">     &lt;br&gt;</span><br><span class="line"></span><br><span class="line">     &lt;input value=&quot;提交&quot; type=&quot;submit&quot; /&gt;</span><br><span class="line"></span><br><span class="line">  &lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure><br>
-        
-          <a class="article-more-a" href="/2018/05/27/struts2-5-27/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Struts2</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/27/struts2-5-27/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1089,6 +1086,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
@@ -1101,11 +1102,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Struts2</a>
+                <a href="javascript:void(0)" class="js-tag color5">html</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1113,7 +1110,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机语言</a>
+                <a href="javascript:void(0)" class="js-tag color3">Struts2</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1121,7 +1118,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">html</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机语言</a>
               </li>
             
             <div class="clearfix"></div>
