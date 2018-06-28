@@ -168,6 +168,87 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-多线程-6-28" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/28/多线程-6-28/">java复习 --- 多线程</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/28/多线程-6-28/" class="archive-article-date">
+  	<time datetime="2018-06-28T11:56:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>多个线程运行的栗子(隋唐演义战争)<br>ArmyRunnable.java<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">package com.yu.practice;</span><br><span class="line"></span><br><span class="line">public class ArmyRunnable implements Runnable&#123;</span><br><span class="line"></span><br><span class="line">	volatile  boolean keepRunning = true;</span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line"></span><br><span class="line">		while(keepRunning) &#123;</span><br><span class="line">			for(int cour=0; cour &lt; 5; cour++)</span><br><span class="line">			System.out.println(Thread.currentThread().getName()+&quot;发起进攻&quot;+&quot;[&quot;+cour+&quot;]&quot;);</span><br><span class="line">			//让出处理器,暂停当前正在执行的线程对象，并执行其他线程(隋军、农民军、舞台)</span><br><span class="line">			Thread.yield();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		System.out.println(&quot;鸣金收兵&quot;);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2018/06/28/多线程-6-28/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/28/多线程-6-28/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-struts2-6-27" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -189,7 +270,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>模拟从数据库获取数据显示在表单中用以选择</p>
+<p>目的：模拟从数据库获取数据显示在表单中用以选择<br>思路：利用Struts的标签和值栈</p>
 </blockquote>
 <p>效果图<br><img src="/2018/06/27/struts2-6-27/t1.jpg"><br>
         
@@ -884,88 +965,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/06/04/分页-6-4/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-post-6-3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/03/post-6-3/">锚链接的应用</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/03/post-6-3/" class="archive-article-date">
-  	<time datetime="2018-06-03T14:16:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>最近在做作业，没怎么更新博客，今天在作业中遇到了一个以前没学过的锚链接的应用,对前端还不熟悉，记下笔记.</p>
-</blockquote>
-<blockquote>
-<p>思路：众所周知，锚链接用于页面内的定位，因此，我们可以设定好父div的大小，然后设定子div的大小大于父div，利用溢出隐藏，使得父div只能显示一个子div，然后在子div中设定锚链接进行定位，就可以实现不同子div定位显示在父div</p>
-</blockquote>
-<p>html文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;head&quot;&gt;</span><br><span class="line"></span><br><span class="line">		&lt;div class=&quot;head-user&quot;&gt;</span><br><span class="line">			&lt;h1&gt;用户信息&lt;/h1&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">		&lt;div class=&quot;head-buy&quot;  &gt;</span><br><span class="line">			&lt;a href=&quot;#buy&quot;&gt;欲购书籍&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">		&lt;div class=&quot;head-sell&quot; &gt;</span><br><span class="line">			&lt;a href=&quot;#sell&quot; &gt;出售书籍&lt;/a&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">		&lt;div class=&quot;head-xiugai&quot;&gt;</span><br><span class="line">			&lt;a href=&quot;#gai&quot;&gt;修改资料&lt;/a&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br><span class="line"> &lt;div class=&quot;right&quot;&gt;</span><br><span class="line"></span><br><span class="line">		&lt;div class=&quot;right-context&quot;&gt;</span><br><span class="line"></span><br><span class="line">			&lt;div class=&quot;buybook&quot; &gt;</span><br><span class="line">				&lt;a name=&quot;buy&quot;&gt;&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">			&lt;/div&gt;</span><br><span class="line">			&lt;div class=&quot;sellbook&quot; &gt;</span><br><span class="line">				&lt;a name=&quot;sell&quot;&gt;&lt;/a&gt;</span><br><span class="line">			&lt;/div&gt;</span><br><span class="line">			&lt;div class=&quot;xiugai&quot;&gt;</span><br><span class="line">				&lt;a name=&quot;gai&quot;&gt;&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">				&lt;h2&gt;请输入新的资料&lt;/h2&gt;</span><br><span class="line">				&lt;form  id=&quot;in-put&quot; action=&quot;userInfo&quot; method=&quot;post&quot;&gt;</span><br><span class="line">				   &lt;p&gt;	用户名：&lt;input type=&quot;text&quot; name=&quot;name&quot; /&gt;&lt;/p&gt;</span><br><span class="line">				   &lt;p&gt;	密码：&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;input type=&quot;text&quot; name=&quot;password&quot; /&gt; &lt;/p&gt;</span><br><span class="line">				   &lt;p&gt;	手机：&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;input type=&quot;text&quot; name=&quot;phone&quot; /&gt; &lt;/p&gt;</span><br><span class="line">				   &lt;p&gt;  qq: &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;input type=&quot;text&quot; name=&quot;contact&quot; /&gt;&lt;/p&gt;</span><br><span class="line">					&lt;p&gt;&lt;input type=&quot;submit&quot; value=&quot;提交修改&quot;/&gt;&lt;/p&gt;</span><br><span class="line">				&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">			&lt;/div&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
-        
-          <a class="article-more-a" href="/2018/06/03/post-6-3/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">html</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/03/post-6-3/">展开全文 >></a>
         </p>
       
 

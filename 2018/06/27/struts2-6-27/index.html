@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>初学struts2 -- 表单标签 | Yuji_19</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="模拟从数据库获取数据显示在表单中用以选择  效果图">
+  <meta name="description" content="目的：模拟从数据库获取数据显示在表单中用以选择思路：利用Struts的标签和值栈  效果图">
 <meta name="keywords" content="技术,Struts2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="初学struts2 -- 表单标签">
 <meta property="og:url" content="http://yoursite.com/2018/06/27/struts2-6-27/index.html">
 <meta property="og:site_name" content="Yuji_19">
-<meta property="og:description" content="模拟从数据库获取数据显示在表单中用以选择  效果图">
+<meta property="og:description" content="目的：模拟从数据库获取数据显示在表单中用以选择思路：利用Struts的标签和值栈  效果图">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2018/06/27/struts2-6-27/t1.jpg">
-<meta property="og:updated_time" content="2018-06-27T10:18:12.385Z">
+<meta property="og:updated_time" content="2018-06-27T10:21:18.032Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初学struts2 -- 表单标签">
-<meta name="twitter:description" content="模拟从数据库获取数据显示在表单中用以选择  效果图">
+<meta name="twitter:description" content="目的：模拟从数据库获取数据显示在表单中用以选择思路：利用Struts的标签和值栈  效果图">
 <meta name="twitter:image" content="http://yoursite.com/2018/06/27/struts2-6-27/t1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Yuji_19" type="application/atom+xml">
@@ -191,7 +191,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>模拟从数据库获取数据显示在表单中用以选择</p>
+<p>目的：模拟从数据库获取数据显示在表单中用以选择<br>思路：利用Struts的标签和值栈</p>
 </blockquote>
 <p>效果图<br><img src="/2018/06/27/struts2-6-27/t1.jpg"><br><a id="more"></a><br>前端：<br>index.jsp<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot;</span><br><span class="line">    pageEncoding=&quot;UTF-8&quot;%&gt;</span><br><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;</span><br><span class="line">&lt;title&gt;Insert title here&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;a href=&quot;inputaction&quot; &gt;Login-UI&lt;/a&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
 <p>Login-UI.jsp<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot;</span><br><span class="line">    pageEncoding=&quot;UTF-8&quot;%&gt;</span><br><span class="line">&lt;%@ taglib prefix=&quot;s&quot; uri=&quot;/struts-tags&quot; %&gt;</span><br><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;</span><br><span class="line">&lt;title&gt;Insert title here&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;s:debug /&gt;</span><br><span class="line">&lt;br&gt;&lt;br&gt;</span><br><span class="line">  &lt;s:form action=&quot;useraction&quot; method=&quot;post&quot;&gt;</span><br><span class="line">    &lt;s:textfield name=&quot;username&quot; value=&quot;%&#123;username&#125;&quot; label=&quot;UserName&quot; /&gt;</span><br><span class="line">    &lt;s:password   name=&quot;password&quot; label=&quot;Password&quot; /&gt;</span><br><span class="line">    &lt;s:radio list=&quot;#&#123;&apos;0&apos;:&apos;Male&apos;, &apos;1&apos;:&apos;Fimale&apos; &#125;&quot;  name=&quot;gender&quot; label=&quot;Gender&quot; /&gt;</span><br><span class="line">    &lt;s:select list=&quot;#request.departments&quot; listKey=&quot;deptId&quot; listValue=&quot;deptName&quot;</span><br><span class="line">    name=&quot;department&quot; label=&quot;Department&quot;/&gt;</span><br><span class="line">    &lt;s:checkboxlist list=&quot;#request.roles&quot; listKey=&quot;roleId&quot; listValue=&quot;roleName&quot; name=&quot;roles&quot; label=&quot;Role&quot; /&gt;</span><br><span class="line">    &lt;s:submit /&gt;</span><br><span class="line">  &lt;/s:form&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
@@ -309,6 +309,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/06/28/多线程-6-28/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          java复习 --- 多线程
+        
+      </div>
+    </a>
   
   
     <a href="/2018/06/27/java复习-6-27/" id="article-nav-older" class="article-nav-link-wrap">
