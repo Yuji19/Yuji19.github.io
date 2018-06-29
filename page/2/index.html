@@ -168,6 +168,92 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-分页-6-4" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/04/分页-6-4/">一个可以重用的分页</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/04/分页-6-4/" class="archive-article-date">
+  	<time datetime="2018-06-04T09:13:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>一个算是比较正规的分页的实现方法，可以重用，做作业用到就记录下来</p>
+</blockquote>
+<blockquote>
+<p>思路：把分页所需的结果集等元素封装在一个Page对象中，更方便取</p>
+</blockquote>
+<p>html文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;table&gt;</span><br><span class="line">		&lt;tr&gt;</span><br><span class="line">			&lt;th&gt;书名&lt;/th&gt;</span><br><span class="line">			&lt;th&gt;作者&lt;/th&gt;</span><br><span class="line"></span><br><span class="line">		&lt;/tr&gt;</span><br><span class="line">		&lt;%</span><br><span class="line">			Page&lt;BuyBook&gt; pageBuy = (Page&lt;BuyBook&gt;)session.getAttribute(&quot;pageBuy&quot;);</span><br><span class="line"></span><br><span class="line">			for(BuyBook book: pageBuy.getList())</span><br><span class="line">			&#123;</span><br><span class="line">		%&gt;</span><br><span class="line">		&lt;tr&gt;</span><br><span class="line">			&lt;td&gt;&lt;%=book.getBookname() %&gt;&lt;/td&gt;</span><br><span class="line">			&lt;td&gt;&lt;%=book.getAuthor() %&gt;&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">		&lt;%</span><br><span class="line">			&#125;</span><br><span class="line">		%&gt;</span><br><span class="line"></span><br><span class="line">&lt;/table&gt;</span><br><span class="line">&lt;div class=&quot;page1&quot;&gt;</span><br><span class="line">		&lt;a href=&quot;UserInfo?pageNoBuy=1&quot; &gt;第一页&lt;/a&gt;</span><br><span class="line">		&lt;a href=&quot;UserInfo?pageNoBuy=&lt;%=pageBuy.getPreviousPageNo() %&gt;&quot; &gt;上一页&lt;/a&gt;</span><br><span class="line">		&lt;a href=&quot;UserInfo?pageNoBuy=&lt;%=pageBuy.getNextPageNo() %&gt;&quot; &gt;下一页&lt;/a&gt;</span><br><span class="line">	  &lt;a href=&quot;UserInfo?pageNoBuy=&lt;%=pageBuy.getBottomPageNo() %&gt;&quot; &gt;最后一页&lt;/a&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+        
+          <a class="article-more-a" href="/2018/06/04/分页-6-4/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">html</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/04/分页-6-4/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-post-6-3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -894,85 +980,6 @@
 
 
   
-    <article id="post-hibernate-5-15-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/15/hibernate-5-15-1/">初学Hibernate-- 映射配置:集合、组件</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/15/hibernate-5-15-1/" class="archive-article-date">
-  	<time datetime="2018-05-15T08:33:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="集合的映射配置"><a href="#集合的映射配置" class="headerlink" title="集合的映射配置"></a>集合的映射配置</h3><p>试验过程如下：</p>
-<p>TestDemo.java</p>
-<img src="/2018/05/15/hibernate-5-15-1/t1.jpg">
-<p>User.java<br>
-        
-          <a class="article-more-a" href="/2018/05/15/hibernate-5-15-1/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/15/hibernate-5-15-1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1082,11 +1089,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Web</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机语言</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机语言</a>
+                <a href="javascript:void(0)" class="js-tag color4">Web</a>
               </li>
              
               <li class="article-tag-list-item">

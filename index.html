@@ -168,6 +168,89 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-多线程2-6-29" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/29/多线程2-6-29/">java复习 --- 多线程2</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/29/多线程2-6-29/" class="archive-article-date">
+  	<time datetime="2018-06-29T03:23:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>争用条件：多个线程抢占共享资源，为了避免多个线程同时修改共享资源的数据，所以需要为抢占共享资源设定条件（锁），使得每次只能一个线程使用共享资源（互斥），该线程处理完后，释放锁，唤醒其他等待抢占资源的线程（同步）</p>
+</blockquote>
+<p>栗子：能量守恒<br>EnergySystem.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">package com.yu.practice;</span><br><span class="line"></span><br><span class="line">public class EnergySystem &#123;</span><br><span class="line"></span><br><span class="line">	private final double[] energyBoxes;</span><br><span class="line"></span><br><span class="line">	private final Object lock = new Object();</span><br><span class="line"></span><br><span class="line">	public EnergySystem(int n, double initialEnergy) &#123;</span><br><span class="line">		energyBoxes = new double[n];</span><br><span class="line">		for(int i = 0; i &lt; energyBoxes.length; i++) &#123;</span><br><span class="line">			energyBoxes[i] = initialEnergy;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void transfer(int from, int to, double amount) &#123;</span><br><span class="line">//		if (energyBoxes[from] &lt; amount) &#123;</span><br><span class="line">//			return;</span><br><span class="line">//		&#125;</span><br><span class="line">//	如果不用同步块，不设置争用条件，像上面代码，出现结果就是图一</span><br><span class="line">		synchronized (lock) &#123;</span><br><span class="line">			while(energyBoxes[from] &lt; amount) &#123;</span><br><span class="line">				try &#123;</span><br><span class="line">					//wait使当前线程阻塞进入等待，不抢占资源，并释放锁</span><br><span class="line">					lock.wait();</span><br><span class="line">				&#125; catch (InterruptedException e) &#123;</span><br><span class="line">					// TODO 自动生成的 catch 块</span><br><span class="line">					e.printStackTrace();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.printf(Thread.currentThread().getName());</span><br><span class="line">			energyBoxes[from]-= amount;</span><br><span class="line">			System.out.printf(&quot;从%d转移%10.5f单位能量到%d&quot;,from,amount,to);</span><br><span class="line">			energyBoxes[to]+= amount;</span><br><span class="line">			System.out.printf(&quot;能量总和：%10.5f%n&quot;,getTotalEnergy());</span><br><span class="line">			//唤醒所有因为wait而等待的线程</span><br><span class="line">			lock.notifyAll();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public double getTotalEnergy() &#123;</span><br><span class="line">		double sum = 0;</span><br><span class="line">		for(double amount: energyBoxes) &#123;</span><br><span class="line">			sum+=amount;</span><br><span class="line">		&#125;</span><br><span class="line">		return sum;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public int getEnergyBoxLen() &#123;</span><br><span class="line">		return energyBoxes.length;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+        
+          <a class="article-more-a" href="/2018/06/29/多线程2-6-29/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/29/多线程2-6-29/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-多线程-6-28" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -908,92 +991,6 @@
 
 
   
-    <article id="post-分页-6-4" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/04/分页-6-4/">一个可以重用的分页</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/04/分页-6-4/" class="archive-article-date">
-  	<time datetime="2018-06-04T09:13:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>一个算是比较正规的分页的实现方法，可以重用，做作业用到就记录下来</p>
-</blockquote>
-<blockquote>
-<p>思路：把分页所需的结果集等元素封装在一个Page对象中，更方便取</p>
-</blockquote>
-<p>html文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;table&gt;</span><br><span class="line">		&lt;tr&gt;</span><br><span class="line">			&lt;th&gt;书名&lt;/th&gt;</span><br><span class="line">			&lt;th&gt;作者&lt;/th&gt;</span><br><span class="line"></span><br><span class="line">		&lt;/tr&gt;</span><br><span class="line">		&lt;%</span><br><span class="line">			Page&lt;BuyBook&gt; pageBuy = (Page&lt;BuyBook&gt;)session.getAttribute(&quot;pageBuy&quot;);</span><br><span class="line"></span><br><span class="line">			for(BuyBook book: pageBuy.getList())</span><br><span class="line">			&#123;</span><br><span class="line">		%&gt;</span><br><span class="line">		&lt;tr&gt;</span><br><span class="line">			&lt;td&gt;&lt;%=book.getBookname() %&gt;&lt;/td&gt;</span><br><span class="line">			&lt;td&gt;&lt;%=book.getAuthor() %&gt;&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">		&lt;%</span><br><span class="line">			&#125;</span><br><span class="line">		%&gt;</span><br><span class="line"></span><br><span class="line">&lt;/table&gt;</span><br><span class="line">&lt;div class=&quot;page1&quot;&gt;</span><br><span class="line">		&lt;a href=&quot;UserInfo?pageNoBuy=1&quot; &gt;第一页&lt;/a&gt;</span><br><span class="line">		&lt;a href=&quot;UserInfo?pageNoBuy=&lt;%=pageBuy.getPreviousPageNo() %&gt;&quot; &gt;上一页&lt;/a&gt;</span><br><span class="line">		&lt;a href=&quot;UserInfo?pageNoBuy=&lt;%=pageBuy.getNextPageNo() %&gt;&quot; &gt;下一页&lt;/a&gt;</span><br><span class="line">	  &lt;a href=&quot;UserInfo?pageNoBuy=&lt;%=pageBuy.getBottomPageNo() %&gt;&quot; &gt;最后一页&lt;/a&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
-        
-          <a class="article-more-a" href="/2018/06/04/分页-6-4/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">html</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/04/分页-6-4/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1103,11 +1100,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Web</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机语言</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机语言</a>
+                <a href="javascript:void(0)" class="js-tag color4">Web</a>
               </li>
              
               <li class="article-tag-list-item">
