@@ -168,6 +168,90 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-struts2-7-3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/03/struts2-7-3/">初学Struts2 --- ModelDriven及遇到的一些问题</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/03/struts2-7-3/" class="archive-article-date">
+  	<time datetime="2018-07-03T13:36:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>这是一个学习Struts2的CRUD过程中的栗子，实现ModelDriven为的是使得Action和Model分离。</p>
+</blockquote>
+<p>index.jsp<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;emp-list&quot; &gt;emp-list&lt;/a&gt;</span><br></pre></td></tr></table></figure></p>
+<p>emp-list.jsp<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot;</span><br><span class="line">    pageEncoding=&quot;UTF-8&quot;%&gt;</span><br><span class="line"> &lt;%@ taglib prefix=&quot;s&quot; uri=&quot;/struts-tags&quot; %&gt;</span><br><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;</span><br><span class="line">&lt;title&gt;Insert title here&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;s:debug&gt;&lt;/s:debug&gt;</span><br><span class="line"></span><br><span class="line">  &lt;s:form action=&quot;emp-save&quot;&gt;</span><br><span class="line">    &lt;s:textfield name=&quot;employeeId&quot; label=&quot;EmployeeId&quot; &gt;&lt;/s:textfield&gt;</span><br><span class="line">    &lt;s:textfield name=&quot;firstName&quot; label=&quot;FirstName&quot; &gt;&lt;/s:textfield&gt;</span><br><span class="line">    &lt;s:textfield name=&quot;lastName&quot; label=&quot;LastName&quot; &gt;&lt;/s:textfield&gt;</span><br><span class="line">    &lt;s:submit &gt;&lt;/s:submit&gt;</span><br><span class="line">  &lt;/s:form&gt;</span><br><span class="line">&lt;br&gt;</span><br><span class="line">&lt;hr&gt;</span><br><span class="line"></span><br><span class="line">  &lt;table  cellpadding=&quot;10&quot; border=&quot;1&quot;&gt;</span><br><span class="line">    &lt;thead&gt;</span><br><span class="line">      &lt;tr&gt;</span><br><span class="line">        &lt;th&gt;employeeId&lt;/th&gt;</span><br><span class="line">        &lt;th&gt;firstName&lt;/th&gt;</span><br><span class="line">        &lt;th&gt;lastName&lt;/th&gt;</span><br><span class="line">        &lt;th&gt;操作&lt;/th&gt;</span><br><span class="line">      &lt;/tr&gt;</span><br><span class="line">    &lt;/thead&gt;</span><br><span class="line"></span><br><span class="line">    &lt;tbody&gt;</span><br><span class="line">      &lt;s:iterator value=&quot;#request.emps&quot; &gt;</span><br><span class="line">       &lt;tr&gt;</span><br><span class="line">         &lt;td&gt;$&#123;employeeId &#125;&lt;/td&gt;</span><br><span class="line">         &lt;td&gt;$&#123;firstName &#125;&lt;/td&gt;</span><br><span class="line">         &lt;td&gt;$&#123;lastName &#125;&lt;/td&gt;</span><br><span class="line">         &lt;td&gt; &lt;a href=&quot;&quot; &gt;Edit&lt;/a&gt; &lt;/td&gt;</span><br><span class="line">         &lt;td&gt; &lt;a href=&quot;emp-delete?employeeId=$&#123;employeeId &#125;&quot; &gt;Delete&lt;/a&gt; &lt;/td&gt;</span><br><span class="line">       &lt;/tr&gt;</span><br><span class="line">      &lt;/s:iterator&gt;</span><br><span class="line">    &lt;/tbody&gt;</span><br><span class="line"></span><br><span class="line">  &lt;/table&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+        
+          <a class="article-more-a" href="/2018/07/03/struts2-7-3/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Struts2</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/03/struts2-7-3/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-多线程2-6-29" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -883,85 +967,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/06/05/ajax-6-5/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-html-6-4" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/04/html-6-4/">导航栏常用的分类设置</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/04/html-6-4/" class="archive-article-date">
-  	<time datetime="2018-06-04T12:04:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>效果：在导航栏上设置分类，当鼠标悬停时，显示全部分类<br>思路：设定父div大小，然后通过overflow:hidden，隐藏包含全部分类标签的子div，设置hover属性，当鼠标悬停时，改变父div的大小为auto，显示子div</p>
-</blockquote>
-<p>html<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;v1&quot;&gt;</span><br><span class="line">  	     &lt;ul&gt;</span><br><span class="line">  		   &lt;li&gt;&lt;a href=&quot;&quot;&gt;首页&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">  		  &lt;li class=&quot;fen1&quot;&gt;</span><br><span class="line">  		  	全部分类</span><br><span class="line">  		  	&lt;div class=&quot;fen2&quot;&gt;</span><br><span class="line"></span><br><span class="line">  		  	&lt;a href=&quot;&quot;&gt;文学艺术&lt;/a&gt;</span><br><span class="line">  		  	&lt;a href=&quot;&quot;&gt;经济管理&lt;/a&gt;</span><br><span class="line">  		  	&lt;a href=&quot;&quot;&gt;人文社科&lt;/a&gt;</span><br><span class="line">  		  	&lt;a href=&quot;&quot;&gt;科学技术&lt;/a&gt;</span><br><span class="line">  		  	&lt;a href=&quot;&quot;&gt;生活休闲&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">  		  	&lt;/div&gt;</span><br><span class="line">  		  &lt;/li&gt;</span><br><span class="line"></span><br><span class="line">     	 &lt;/ul&gt;</span><br><span class="line">       &lt;/div&gt;</span><br><span class="line">       &lt;div class=&quot;v2&quot;&gt;</span><br><span class="line"></span><br><span class="line">       &lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
-        
-          <a class="article-more-a" href="/2018/06/04/html-6-4/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">html</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/04/html-6-4/">展开全文 >></a>
         </p>
       
 

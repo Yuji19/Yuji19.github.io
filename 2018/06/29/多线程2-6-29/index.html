@@ -16,10 +16,13 @@
 <meta property="og:site_name" content="Yuji_19">
 <meta property="og:description" content="争用条件：多个线程抢占共享资源，为了避免多个线程同时修改共享资源的数据，所以需要为抢占共享资源设定条件（锁），使得每次只能一个线程使用共享资源（互斥），该线程处理完后，释放锁，唤醒其他等待抢占资源的线程（同步）  栗子：能量守恒EnergySystem.java12345678910111213141516171819202122232425262728293031323334353637383">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-29T03:41:30.646Z">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/多线程2-6-29/t1.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/06/29/多线程2-6-29/t2.jpg">
+<meta property="og:updated_time" content="2018-06-29T03:43:07.922Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java复习 --- 多线程2">
 <meta name="twitter:description" content="争用条件：多个线程抢占共享资源，为了避免多个线程同时修改共享资源的数据，所以需要为抢占共享资源设定条件（锁），使得每次只能一个线程使用共享资源（互斥），该线程处理完后，释放锁，唤醒其他等待抢占资源的线程（同步）  栗子：能量守恒EnergySystem.java12345678910111213141516171819202122232425262728293031323334353637383">
+<meta name="twitter:image" content="http://yoursite.com/2018/06/29/多线程2-6-29/t1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Yuji_19" type="application/atom+xml">
   
@@ -195,7 +198,7 @@
 <a id="more"></a>
 <p>EnergyTransferTask.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">package com.yu.practice;</span><br><span class="line"></span><br><span class="line">public class EnergyTransferTask implements Runnable &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	private EnergySystem energySystem;</span><br><span class="line">	private int fromBox;</span><br><span class="line">	private double maxAmount;</span><br><span class="line">	private int time = 10;</span><br><span class="line"></span><br><span class="line">	 public EnergyTransferTask(EnergySystem energySystem,int from, double max) &#123;</span><br><span class="line"></span><br><span class="line">		 this.energySystem = energySystem;</span><br><span class="line">		 this.fromBox = from;</span><br><span class="line">		 this.maxAmount = max;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line"></span><br><span class="line">		try &#123;</span><br><span class="line">			//设置一直转移</span><br><span class="line">			while(true) &#123;</span><br><span class="line">				int toBox = (int) (energySystem.getEnergyBoxLen()*Math.random());</span><br><span class="line">				//在最大转移值范围内随机选取转移能量值</span><br><span class="line">				double amount = maxAmount*Math.random();</span><br><span class="line">				energySystem.transfer(fromBox, toBox, amount);</span><br><span class="line"></span><br><span class="line">				Thread.sleep((int)(time*Math.random()));</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line">		&#125; catch (InterruptedException e) &#123;</span><br><span class="line">			// TODO 自动生成的 catch 块</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
 <p>EnergySystemTest.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">package com.yu.practice;</span><br><span class="line"></span><br><span class="line">public class EnergySystemTest &#123;</span><br><span class="line"></span><br><span class="line">	public static final int box_count = 5;</span><br><span class="line">	public static final double init_energy = 1000;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		EnergySystem energySystem = new EnergySystem(box_count, init_energy);</span><br><span class="line">		//每个能量盒子就是一个线程</span><br><span class="line">		for(int i = 0; i &lt; box_count; i++ ) &#123;</span><br><span class="line">			EnergyTransferTask task = new EnergyTransferTask(energySystem, i, init_energy);</span><br><span class="line">			Thread thread = new Thread(task);</span><br><span class="line">			thread.start();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
-<p>输出：<br>图一<br><br>图二<br></p>
+<p>输出：<br>图一<br><img src="/2018/06/29/多线程2-6-29/t1.jpg"><br>图二<br><img src="/2018/06/29/多线程2-6-29/t2.jpg"></p>
 
       
 
@@ -303,6 +306,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/07/03/struts2-7-3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          初学Struts2 --- ModelDriven及遇到的一些问题
+        
+      </div>
+    </a>
   
   
     <a href="/2018/06/28/多线程-6-28/" id="article-nav-older" class="article-nav-link-wrap">
