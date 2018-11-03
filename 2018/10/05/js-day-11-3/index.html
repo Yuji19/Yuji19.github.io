@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>js的一些基础知识 | Yuji_19</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="原生ajax    function ajax(){    var xhr;    if(window.XMLHttpRequest){        xhr = new XMLHttpRequest();    }    else{        xhr = new ActiveXObject(“Microsoft.XMLHttp”);    }    xhr.open(“get”,URL);">
+  <meta name="description" content="原生ajax12345678910111213141516	function ajax()&amp;#123;	var xhr;	if(window.XMLHttpRequest)&amp;#123;		xhr = new XMLHttpRequest();	&amp;#125;	else&amp;#123;		xhr = new ActiveXObject(&amp;quot;Microsoft.XMLHttp&amp;quot;);	&amp;#1">
 <meta name="keywords" content="技术,javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js的一些基础知识">
 <meta property="og:url" content="http://yoursite.com/2018/10/05/js-day-11-3/index.html">
 <meta property="og:site_name" content="Yuji_19">
-<meta property="og:description" content="原生ajax    function ajax(){    var xhr;    if(window.XMLHttpRequest){        xhr = new XMLHttpRequest();    }    else{        xhr = new ActiveXObject(“Microsoft.XMLHttp”);    }    xhr.open(“get”,URL);">
+<meta property="og:description" content="原生ajax12345678910111213141516	function ajax()&amp;#123;	var xhr;	if(window.XMLHttpRequest)&amp;#123;		xhr = new XMLHttpRequest();	&amp;#125;	else&amp;#123;		xhr = new ActiveXObject(&amp;quot;Microsoft.XMLHttp&amp;quot;);	&amp;#1">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-03T14:37:42.473Z">
+<meta property="og:updated_time" content="2018-11-03T14:42:31.260Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js的一些基础知识">
-<meta name="twitter:description" content="原生ajax    function ajax(){    var xhr;    if(window.XMLHttpRequest){        xhr = new XMLHttpRequest();    }    else{        xhr = new ActiveXObject(“Microsoft.XMLHttp”);    }    xhr.open(“get”,URL);">
+<meta name="twitter:description" content="原生ajax12345678910111213141516	function ajax()&amp;#123;	var xhr;	if(window.XMLHttpRequest)&amp;#123;		xhr = new XMLHttpRequest();	&amp;#125;	else&amp;#123;		xhr = new ActiveXObject(&amp;quot;Microsoft.XMLHttp&amp;quot;);	&amp;#1">
   
     <link rel="alternative" href="/atom.xml" title="Yuji_19" type="application/atom+xml">
   
@@ -188,22 +188,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="原生ajax"><a href="#原生ajax" class="headerlink" title="原生ajax"></a>原生ajax</h4><p><code><br>    function ajax(){<br>    var xhr;<br>    if(window.XMLHttpRequest){<br>        xhr = new XMLHttpRequest();<br>    }<br>    else{<br>        xhr = new ActiveXObject(“Microsoft.XMLHttp”);<br>    }<br>    xhr.open(“get”,URL);<br>    xhr.send(“有数据要发送就传参，没有就不用”);<br>    xhr.onreadystatechange = function(){<br>        if(xhr.readystate == 4 &amp;&amp; xhr.status == 200){<br>            console.log(xhr.responseText);<br>        }<br>    }<br>}<br></code></p>
-<h4 id="数组去重的三种方法"><a href="#数组去重的三种方法" class="headerlink" title="数组去重的三种方法"></a>数组去重的三种方法</h4><p><code><br>    //first<br>    function quchong(){<br>        var rearr = [];<br>        var flag = true;<br>        for(var i = 0, len = this.length; i &lt; len; i++){<br>            if(rearr.indexOf(this[i]) == -1){<br>                if(this[i] != this[i]){ //排除NaN, 因为NaN != NaN 是true<br>                    if(flag){<br>                        rearr.push(this[i]);<br>                    }<br>                }<br>                else{<br>                    rearr.push(this[i]);<br>                }<br>            }<br>        }<br>        return rearr;<br>    }</code></p>
-<pre><code>//second  es6的Set对象
-function quchong(){
-    var set = new Set(this);
-    var newarr = Array.from(set);
-    return newarr;
-}
-
-//third   排除不了NaN
-function quchong(){
-    return this.filter(function(item,index,array){
-        return array.indexOf(item) === index;
-        });
-}
-</code></pre><p></p>
+        <h4 id="原生ajax"><a href="#原生ajax" class="headerlink" title="原生ajax"></a>原生ajax</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">	function ajax()&#123;</span><br><span class="line">	var xhr;</span><br><span class="line">	if(window.XMLHttpRequest)&#123;</span><br><span class="line">		xhr = new XMLHttpRequest();</span><br><span class="line">	&#125;</span><br><span class="line">	else&#123;</span><br><span class="line">		xhr = new ActiveXObject(&quot;Microsoft.XMLHttp&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	xhr.open(&quot;get&quot;,URL);</span><br><span class="line">	xhr.send(&quot;有数据要发送就传参，没有就不用&quot;);</span><br><span class="line">	xhr.onreadystatechange = function()&#123;</span><br><span class="line">		if(xhr.readystate == 4 &amp;&amp; xhr.status == 200)&#123;</span><br><span class="line">			console.log(xhr.responseText);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h4 id="数组去重的三种方法"><a href="#数组去重的三种方法" class="headerlink" title="数组去重的三种方法"></a>数组去重的三种方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">//first</span><br><span class="line">function quchong()&#123;</span><br><span class="line">	var rearr = [];</span><br><span class="line">	var flag = true;</span><br><span class="line">	for(var i = 0, len = this.length; i &lt; len; i++)&#123;</span><br><span class="line">		if(rearr.indexOf(this[i]) == -1)&#123;</span><br><span class="line">			if(this[i] != this[i])&#123; //排除NaN, 因为NaN != NaN 是true</span><br><span class="line">				if(flag)&#123;</span><br><span class="line">					rearr.push(this[i]);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;  </span><br><span class="line">			else&#123;</span><br><span class="line">				rearr.push(this[i]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return rearr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//second  es6的Set对象</span><br><span class="line">function quchong()&#123;</span><br><span class="line">	var set = new Set(this);</span><br><span class="line">	var newarr = Array.from(set);</span><br><span class="line">	return newarr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//third   排除不了NaN</span><br><span class="line">function quchong()&#123;</span><br><span class="line">	return this.filter(function(item,index,array)&#123;</span><br><span class="line">		return array.indexOf(item) === index;</span><br><span class="line">		&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
 
