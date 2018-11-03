@@ -168,6 +168,99 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-js-day-11-3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/05/js-day-11-3/">js的一些基础知识</a>
+    </h1>
+  
+
+        
+        <a href="/2018/10/05/js-day-11-3/" class="archive-article-date">
+  	<time datetime="2018-10-05T14:14:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="原生ajax"><a href="#原生ajax" class="headerlink" title="原生ajax"></a>原生ajax</h4><p><code><br>    function ajax(){<br>    var xhr;<br>    if(window.XMLHttpRequest){<br>        xhr = new XMLHttpRequest();<br>    }<br>    else{<br>        xhr = new ActiveXObject(“Microsoft.XMLHttp”);<br>    }<br>    xhr.open(“get”,URL);<br>    xhr.send(“有数据要发送就传参，没有就不用”);<br>    xhr.onreadystatechange = function(){<br>        if(xhr.readystate == 4 &amp;&amp; xhr.status == 200){<br>            console.log(xhr.responseText);<br>        }<br>    }<br>}<br></code></p>
+<h4 id="数组去重的三种方法"><a href="#数组去重的三种方法" class="headerlink" title="数组去重的三种方法"></a>数组去重的三种方法</h4><p><code><br>    //first<br>    function quchong(){<br>        var rearr = [];<br>        var flag = true;<br>        for(var i = 0, len = this.length; i &lt; len; i++){<br>            if(rearr.indexOf(this[i]) == -1){<br>                if(this[i] != this[i]){ //排除NaN, 因为NaN != NaN 是true<br>                    if(flag){<br>                        rearr.push(this[i]);<br>                    }<br>                }<br>                else{<br>                    rearr.push(this[i]);<br>                }<br>            }<br>        }<br>        return rearr;<br>    }</code></p>
+<pre><code>//second  es6的Set对象
+function quchong(){
+    var set = new Set(this);
+    var newarr = Array.from(set);
+    return newarr;
+}
+
+//third   排除不了NaN
+function quchong(){
+    return this.filter(function(item,index,array){
+        return array.indexOf(item) === index;
+        });
+}
+</code></pre><p></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/10/05/js-day-11-3/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-vue-day01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -923,88 +1016,6 @@
 
 
   
-    <article id="post-struts2-6-22" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/22/struts2-6-22/">初学Struts2 -- OGNL</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/22/struts2-6-22/" class="archive-article-date">
-  	<time datetime="2018-06-22T08:15:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="OGNL是什么？"><a href="#OGNL是什么？" class="headerlink" title="OGNL是什么？"></a>OGNL是什么？</h3><p>OGNL是Object-Graph Navigation Language的缩写，它是一种功能强大的表达式语言，通过它简单一致的表达式语法，可以存取对象的任意属性，调用对象的方法，遍历整个对象的结构图，实现字段类型转化等功能。它使用相同的表达式去存取对象的属性。这样可以更好的取得数据(百度百科)。</p>
-<h3 id="为什么要使用OGNL"><a href="#为什么要使用OGNL" class="headerlink" title="为什么要使用OGNL?"></a>为什么要使用OGNL?</h3><p>在MVC设计模式中，视图负责显示模型和其他对象，为了在JSP中访问这些对象，需要使用Strust2从WebWork中继承的OGNL。</p>
-<h3 id="应用何处？"><a href="#应用何处？" class="headerlink" title="应用何处？"></a>应用何处？</h3><h4 id="值栈（ValueStack）"><a href="#值栈（ValueStack）" class="headerlink" title="值栈（ValueStack）"></a>值栈（ValueStack）</h4><p>1）值栈在哪里？<br>众所周知，在web项目中，都会存在action类（或者servlet）来处理请求，而值栈就是执行action时创建并保存在action中。<br><img src="/2018/06/22/struts2-6-22/v1.jpg"></p>
-        
-          <a class="article-more-a" href="/2018/06/22/struts2-6-22/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Struts2</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/22/struts2-6-22/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1126,11 +1137,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
