@@ -168,6 +168,83 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-struts2-5-25-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/25/struts2-5-25-2/">404错误的其中一种原因</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/25/struts2-5-25-2/" class="archive-article-date">
+  	<time datetime="2018-05-25T14:45:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>问题：直接访问WEB-INF下的html，jsp文件会报404错误</p>
+<p>原因：WEB-INF是在服务端的，而且是Java的WEB应用的安全目录。也就是客户端无法访问，只有服务端可以访问的目录。</p>
+<p>如果想在页面中直接访问其中的文件，必须通过web.xml文件对要访问的文件进行相应映射。</p>
+<p>之前没有注意过这种问题，今天找了好久才发现是这样的，以后别忘了。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Web</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/25/struts2-5-25-2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-struts2-5-25" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -881,91 +958,6 @@
 
 
   
-    <article id="post-hibernate-5-11" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/11/hibernate-5-11/">初学Hibernate--环境配置与用法</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/11/hibernate-5-11/" class="archive-article-date">
-  	<time datetime="2018-05-11T12:05:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
-<p>初次接触，经历一番折腾，总算是把环境给配置好，简单了解Hibrnate的基本用法，记录一些需要注意的地方</p>
-</blockquote>
-<p><strong>Hibernate 的本质是什么？</strong></p>
-<p>首先，Hibernate是一个ORM（Object Relation Mapping）框架，所以它很自然也遵循ORM规范映射思想：<br>一个表映射成一个类<br>一行记录（一条数据）映射成一个对象<br>一列（一个字段）映射成对象的属性</p>
-<p>它对JDBC进行了轻量级的对象封装，位于中间层，在应用程序和数据库之间起到了桥梁作用的一种映射工具（映射是通过配置文件来维护的）。<br>
-        
-          <a class="article-more-a" href="/2018/05/11/hibernate-5-11/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hibernate</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/11/hibernate-5-11/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -1075,11 +1067,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机语言</a>
+                <a href="javascript:void(0)" class="js-tag color4">Web</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Web</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机语言</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1087,11 +1079,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
